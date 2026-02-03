@@ -56,7 +56,7 @@
 
 ![Single-File vs Multi-Page Mode Comparison](assets/comparison.png)
 
-*See the `Report/` directory for detailed benchmark results and analysis.*
+*See the [full interactive report](https://plouismarie.github.io/kg_rag_cli/Report/kg_mode_comparison_report.html) for detailed benchmark results and analysis.*
 
 ---
 
