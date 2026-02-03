@@ -32,6 +32,8 @@
 
 - New: 3D Plotly visualization (`--viz3d`)
 
+![3D Knowledge Graph Visualization](assets/viz3d.png)
+
 ### New CLI Options
 | Flag | Description |
 |------|-------------|
@@ -47,6 +49,14 @@
 ## Architecture
 
 ![Knowledge Graph RAG - Multi-Page Processing Architecture](assets/architecture.png)
+
+---
+
+## Performance Comparison
+
+![Single-File vs Multi-Page Mode Comparison](assets/comparison.png)
+
+*See the `Report/` directory for detailed benchmark results and analysis.*
 
 ---
 
@@ -285,153 +295,6 @@ Error: Index 'missing.txt' not found.
 
 Please build the index first with:
   python kg_rag_cli.py --mode index --input missing.txt
-```
-
-## File Structure
-
-```
-kg_rag_cli.py              # CLI script
-requirements.txt           # Dependencies
-lib/                       # Local library modules
-  ├── __init__.py
-  ├── graph_store.py       # ScalableGraphStore with entity resolution
-  ├── hybrid_processor.py  # HybridDocumentProcessor
-  ├── kg_builder.py        # IncrementalKGBuilder
-  ├── entity_extractor.py  # Entity extraction and resolution
-  └── ...                  # Other supporting modules
-assets/                    # Documentation assets
-  └── architecture.png     # Architecture diagram
-report/                    # Test reports and benchmarks
-  ├── kg_mode_comparison_report.html  # Mode comparison analysis
-  └── test_results.json    # Test results data
-Input/                     # Sample input files
-  ├── SinglePage/
-  │   └── Ulysses.txt      # Single-file example
-  └── MultiPage/           # Multi-page examples
-      ├── Ulysses/         # 5-page Ulysses sample
-      ├── TheVeldt/        # 10-page example
-      └── ...
-kg_store/                  # Graph storage directory (created at runtime)
-  ├── mybook.txt.gml       # Single-file graph (GML format)
-  ├── mybook.txt.html      # Single-file visualization
-  └── ulysses_multi/       # Multi-page collection
-      ├── chroma_db/       # RAG vector store
-      └── kg_store/        # Knowledge graph + entity resolver state
-```
-
-## Entity Deduplication (NEW)
-
-Entity deduplication is **enabled by default** and helps merge similar entity mentions across documents.
-
-### How It Works
-
-The system uses `EntityResolver` to normalize entity names before adding them to the graph:
-
-- **Case normalization**: "Paris" and "paris" → "Paris"
-- **Alias resolution**: "Prince Paris" and "Paris" → "Paris" (canonical form)
-- **Frequency tracking**: Most common form becomes canonical
-
-This is especially important for multi-page documents where the same entity may be mentioned in different ways across pages.
-
-### Example
-
-Without deduplication:
-```
-Nodes: 145 (with duplicates: "Paris", "paris", "Prince Paris", ...)
-```
-
-With deduplication:
-```
-Nodes: 62 (canonical entities only)
-Aliases: 98 (variations merged)
-Deduplication ratio: 1.58 (1.58 aliases per canonical entity)
-```
-
-### Disable Entity Deduplication
-
-To disable (not recommended for multi-page documents):
-```bash
-python kg_rag_cli.py --mode index --input-dir book_pages/ --collection mybook --no-entity-resolution
-```
-
-## Smart Visualization (NEW)
-
-The system automatically adapts visualization to graph size for optimal performance and clarity.
-
-### Adaptive Strategies
-
-The visualization engine intelligently selects the best approach based on graph size:
-
-| Graph Size | Strategy | Description |
-|------------|----------|-------------|
-| **Small** (< 50 nodes) | Standard PyVis | Interactive force-directed layout with full graph |
-| **Medium** (50-150 nodes) | Community Detection | Color-coded clusters showing entity communities |
-| **Large** (150-300 nodes) | Top Nodes + Communities | 100 most important nodes with community coloring |
-| **Massive** (300+ nodes) | Statistical Dashboard | HTML report with metrics (no graph visualization) |
-
-### Examples
-
-**Small Graph Visualization:**
-```
-[Visualization] Standard layout (42 nodes)
-  Saved: Input_SinglePage_Ulysses.txt.html
-```
-- Interactive graph with force-directed physics
-- All nodes visible
-- Hover for details
-
-**Medium Graph with Communities:**
-```
-[Visualization] Community detection (127 nodes)
-  Communities detected: 5
-  Saved: Input_MultiPage_TheVeldt.html
-```
-- Nodes colored by detected community
-- Character clusters, location clusters, etc.
-- Clear visual grouping
-
-**Large Graph - Top Nodes:**
-```
-[Visualization] Top nodes + communities (287 → 100 nodes)
-  Saved: collection_query_1706024567.html
-```
-- Shows 100 most connected entities
-- Node size = importance (centrality)
-- Community coloring maintained
-
-**Massive Graph - Stats Dashboard:**
-```
-[Visualization] Statistical dashboard (823 nodes - too large)
-  Top entity: Paris (45 connections)
-  Saved: large_collection_stats.html
-```
-- No graph rendering (too complex)
-- Top 10 most connected entities
-- Community structure summary
-- Degree distribution stats
-
-### Why Adaptive?
-
-Traditional graph visualizations become unusable with 100+ nodes:
-- Browser performance degrades
-- Visual clutter obscures insights
-- Force-directed layouts take minutes to stabilize
-
-Our smart visualization ensures:
-- ✅ Always fast and responsive
-- ✅ Clear insights at any scale
-- ✅ No manual configuration needed
-
-### Customizing Visualization
-
-Use `--verbose` flag to see which strategy is applied:
-```bash
-python kg_rag_cli.py --mode index --input large_book.txt --verbose
-```
-
-Use `--no-visualize` to skip visualization entirely:
-```bash
-python kg_rag_cli.py --mode index --input-dir book_pages/ --no-visualize
 ```
 
 ## License
