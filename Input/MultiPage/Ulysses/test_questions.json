@@ -1,0 +1,105 @@
+{
+  "test_questions": [
+    {
+      "id": 1,
+      "difficulty": "very_easy",
+      "category": "functionality_check",
+      "question": "Where did Paris tend his flocks?",
+      "expected_answer": "Mount Ida / slopes of Mount Ida",
+      "notes": "Simple factual recall to confirm query functionality"
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "What did the golden apple's inscription say?",
+      "expected_answer": "To the Fairest",
+      "notes": "Direct factual information from the text"
+    },
+    {
+      "id": 3,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "Who was Helen's husband?",
+      "expected_answer": "Menelaus",
+      "notes": "Simple entity relationship"
+    },
+    {
+      "id": 4,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "What is Odysseus's other name mentioned in the text?",
+      "expected_answer": "Ulysses",
+      "notes": "Entity name variation"
+    },
+    {
+      "id": 5,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "What promises did the three goddesses offer Paris, and which goddess won?",
+      "expected_answer": "Hera offered power over all kingdoms, Athena promised victory in all battles, Aphrodite offered the love of the most beautiful woman in the world. Aphrodite won.",
+      "notes": "Requires connecting multiple pieces of information from the same passage"
+    },
+    {
+      "id": 6,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "Why was Eris excluded from the wedding, and how did she respond?",
+      "expected_answer": "She was excluded because the gods feared her presence would bring chaos to the joyous occasion. She responded by creating the golden apple inscribed 'To the Fairest' to ignite jealousy among the goddesses.",
+      "notes": "Requires understanding cause and effect within a single page"
+    },
+    {
+      "id": 7,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "How did Palamedes prove that Odysseus was feigning madness?",
+      "expected_answer": "He placed baby Telemachus in the path of the plow, and Odysseus immediately turned aside to avoid harming his son, revealing his sanity.",
+      "notes": "Requires understanding a specific event and its implication"
+    },
+    {
+      "id": 8,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "Explain the chain of causation from the divine wedding to the Trojan War. What were the key events?",
+      "expected_answer": "Eris was excluded from Peleus and Thetis's wedding, so she threw the golden apple inscribed 'To the Fairest'. Three goddesses (Hera, Athena, Aphrodite) claimed it. Paris judged and chose Aphrodite. Aphrodite promised him Helen, the most beautiful woman. Paris took Helen from Sparta. Greek armies gathered to reclaim her, starting the Trojan War.",
+      "notes": "Requires synthesizing information across multiple pages (page 4, 1, 2, 3)"
+    },
+    {
+      "id": 9,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "What dilemma did King Priam face when Paris arrived with Helen, and what factors influenced his decision?",
+      "expected_answer": "King Priam had to choose between returning the stolen queen to avert war or welcoming his son and the woman promised to him by the gods. He was moved by his love for Prince Paris and decided to shelter them both within Troy's walls.",
+      "notes": "Requires understanding character motivation and decision-making context"
+    },
+    {
+      "id": 10,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "How do the three Greek heroes mentioned (Achilles, Ajax, and Odysseus) differ in their strengths, and what does this suggest about the nature of the Greek army?",
+      "expected_answer": "Achilles relied on strength, Ajax on endurance, and Ulysses/Odysseus contributed cunning and careful planning. This suggests the Greek army valued diverse qualities and combined different types of warriors with complementary abilities.",
+      "notes": "Requires inference and synthesis from descriptive information"
+    },
+    {
+      "id": 11,
+      "difficulty": "unanswerable",
+      "category": "not_in_data",
+      "question": "What happened to the Trojan horse after the fall of Troy?",
+      "expected_answer": "This information is not provided in the text.",
+      "notes": "Tests how the RAG system handles questions that cannot be answered from the provided data"
+    }
+  ],
+  "metadata": {
+    "source_directory": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/kg_rag_cli/Input/MultiPage/Ulysses",
+    "total_questions": 11,
+    "difficulty_distribution": {
+      "very_easy": 1,
+      "easy": 3,
+      "medium": 3,
+      "hard": 3,
+      "unanswerable": 1
+    },
+    "purpose": "Testing RAG systems: kg_rag_cli, vt_rag_cli, ag_rag_cli, rlm_rag_cli",
+    "content_theme": "Trojan War mythology - Events leading to the war"
+  }
+}

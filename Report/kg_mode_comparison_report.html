@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KG RAG CLI: Single File vs Multi-File Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1400px;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        .system-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 15px 0;
+        }
+        .metric {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-success { background-color: #28a745; }
+        .badge-warning { background-color: #ffc107; }
+        .badge-danger { background-color: #dc3545; }
+        .badge-info { background-color: #17a2b8; }
+        h1 { color: #333; margin-bottom: 30px; }
+        h2 { color: #444; margin-top: 40px; border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        h3 { color: #555; margin-top: 30px; }
+        .single-file { border-left: 4px solid #FF6384; }
+        .multi-file { border-left: 4px solid #36A2EB; }
+        .winner-badge {
+            font-size: 1.2em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .comparison-row:hover { background-color: #f8f9fa; }
+        .better { color: #28a745; font-weight: bold; }
+        .worse { color: #dc3545; font-weight: bold; }
+        .tie { color: #6c757d; font-style: italic; }
+
+        /* Clickable table rows for collapse */
+        .clickable-row {
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        .clickable-row:hover {
+            background-color: #e9ecef !important;
+        }
+
+        /* Collapse arrow animation */
+        .collapse-arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin-right: 8px;
+            color: #666;
+            transform: rotate(0deg);
+        }
+        .clickable-row.collapsed .collapse-arrow {
+            transform: rotate(0deg);
+        }
+        .clickable-row:not(.collapsed) .collapse-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Question details container */
+        .question-details-container {
+            animation: fadeIn 0.3s ease-in;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Improve detail row appearance */
+        .table tbody tr.collapse {
+            border: none;
+        }
+        .table tbody tr.collapse > td {
+            padding: 0 !important;
+            border: none;
+        }
+
+        /* Expected answer styling */
+        .expected-answer {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* Response containers */
+        .response-container {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Mode headers */
+        .mode-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .mode-header.single-file-mode {
+            color: #FF6384;
+        }
+        .mode-header.multi-file-mode {
+            color: #36A2EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span style="color: #0066cc;">📊</span> KG RAG CLI: Single File vs Multi-File Comparison</h1>
+        <p class="text-muted">Generated: 2026-02-02 14:13:08</p>
+
+        <!-- Executive Summary -->
+        <div class="system-card">
+            <h2>Executive Summary</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h4>🏆 Overall Winner: <span class="badge bg-primary">Multi File</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>Total Questions: <span class="badge bg-secondary">10</span></h4>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="system-card single-file" style="border-left: 4px solid #FF6384;">
+                        <h5>Single File Mode</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="metric-label">Tests</div>
+                                <div class="metric" style="font-size: 1.8rem;">11</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-label">Successful</div>
+                                <div class="metric" style="font-size: 1.8rem; color: #28a745;">6</div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="metric-label">Timeouts</div>
+                                <div class="metric" style="font-size: 1.8rem; color: #28a745;">0</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-label">Total Time</div>
+                                <div class="metric" style="font-size: 1.8rem; color: #6c757d;">0.5m</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="system-card multi-file" style="border-left: 4px solid #36A2EB;">
+                        <h5>Multi File Mode</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="metric-label">Tests</div>
+                                <div class="metric" style="font-size: 1.8rem;">11</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-label">Successful</div>
+                                <div class="metric" style="font-size: 1.8rem; color: #28a745;">11</div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="metric-label">Timeouts</div>
+                                <div class="metric" style="font-size: 1.8rem; color: #28a745;">0</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-label">Total Time</div>
+                                <div class="metric" style="font-size: 1.8rem; color: #6c757d;">1.1m</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Key Findings</h4>
+                    <ul><li><strong>Accuracy Leader:</strong> Multi-file mode wins on 10 questions vs 0 for single-file (with 0 ties)</li><li><strong>Speed Leader:</strong> Single-file mode is 2.3x faster on average (2.98s vs 6.78s)</li><li><strong>Cost Efficiency:</strong> Single-file mode costs 7.7x less ($0.0003 vs $0.0027)</li><li><strong>Token Usage:</strong> Multi-file mode uses +972 more tokens on average (1119 vs 147)</li></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Configuration Cards -->
+        <h2>Configuration Details</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="system-card single-file">
+                    <h3>Single File Mode</h3>
+                    <p><strong>Source:</strong> <code>Mathprez.txt</code></p>
+                    <h5>Performance Summary</h5>
+                    <ul>
+                        <li>Pass Rate: <strong>50%</strong></li>
+                        <li>Avg Accuracy: <strong>32%</strong></li>
+                        <li>Avg Response Time: <strong>2.98s</strong></li>
+                        <li>Total Cost: <strong>$0.0003</strong></li>
+                        <li>Avg Tokens: <strong>147</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="system-card multi-file">
+                    <h3>Multi-File Mode</h3>
+                    <p><strong>Source:</strong> <code>Transcripts-Mathprez</code></p>
+                    <h5>Performance Summary</h5>
+                    <ul>
+                        <li>Pass Rate: <strong>100%</strong></li>
+                        <li>Avg Accuracy: <strong>73%</strong></li>
+                        <li>Avg Response Time: <strong>6.78s</strong></li>
+                        <li>Total Cost: <strong>$0.0027</strong></li>
+                        <li>Avg Tokens: <strong>1119</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Charts -->
+        <h2>Performance Analysis</h2>
+
+        <div class="chart-container">
+            <canvas id="accuracyChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="executionTimeChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="tokenUsageChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="costChart"></canvas>
+        </div>
+
+        <!-- Detailed Comparison Table -->
+        <div class="table-container">
+            <h3>Question-by-Question Comparison</h3>
+            
+    <p class="text-muted">Click any row to expand and see detailed responses from both modes.</p>
+    <table class="table table-hover table-bordered" style="text-align: center;">
+        <thead class="table-dark">
+            <tr>
+                <th style="text-align: left; width: 30%;">Question</th>
+                <th>Difficulty</th>
+                <th>Single File<br>Accuracy</th>
+                <th>Multi File<br>Accuracy</th>
+                <th>Single</th>
+                <th>Multi</th>
+                <th>Single File<br>Time</th>
+                <th>Multi File<br>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+    
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-2-details"
+                aria-expanded="false" aria-controls="question-2-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="What is a filter according to the lecture?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q2:</strong> What is a filter according to the lecture?
+                </td>
+                <td><span class="badge bg-success">easy</span></td>
+                <td>48%</td>
+                <td>90%</td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>2.25s</td>
+                <td>4.92s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-2-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> What is a filter according to the lecture?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> A filter is a matrix of numbers, typically used in operations such as convolution or correlation. It's also synonymous with kernel.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">48%</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745;">90%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">2.25s</td>
+                                    <td style="text-align: center;">4.92s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">96</td>
+                                    <td style="text-align: center;">1056</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">2.25s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">48%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: A filter is clarified as matrix modification and is described as a kernel that has numerical attributes. It uses methods like convolution and correlation. An example of a filter is a Gabor filter.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">4.92s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #28a745;">90%</strong>
+                                </div>
+                                <div class="response-container">
+                                    A filter is described in the lecture as a matrix of numbers that alters the values in an image. It is typically used in operations such as convolution or correlation and is synonymous with the term "kernel." Filters, including Gabor filters, are applied to process images by modifying specific frequencies.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-3-details"
+                aria-expanded="false" aria-controls="question-3-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="At what age did the lecturer start doing computer science?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q3:</strong> At what age did the lecturer start doing computer ...
+                </td>
+                <td><span class="badge bg-success">easy</span></td>
+                <td>0%</td>
+                <td>33%</td>
+                <td><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>2.04s</td>
+                <td>3.45s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-3-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> At what age did the lecturer start doing computer science?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> 14 years old
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">0%</span></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">33%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">2.04s</td>
+                                    <td style="text-align: center;">3.45s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">63</td>
+                                    <td style="text-align: center;">1010</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0002</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">2.04s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">0%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The answer cannot be determined from the context.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">3.45s</span>
+                                    <span class="badge bg-secondary">$0.0002</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">33%</strong>
+                                </div>
+                                <div class="response-container">
+                                    The lecturer started doing computer science at the age of 14.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-4-details"
+                aria-expanded="false" aria-controls="question-4-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="What letters are used to represent coordinates in the Fourier domain instead of x and y?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q4:</strong> What letters are used to represent coordinates in ...
+                </td>
+                <td><span class="badge bg-success">easy</span></td>
+                <td>33%</td>
+                <td>100%</td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>2.26s</td>
+                <td>4.51s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-4-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> What letters are used to represent coordinates in the Fourier domain instead of x and y?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> u and v
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">33%</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745;">100%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">2.26s</td>
+                                    <td style="text-align: center;">4.51s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">91</td>
+                                    <td style="text-align: center;">935</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0002</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">2.26s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">33%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The letters used to represent coordinates in the Fourier domain instead of x and y cannot be determined from the context provided.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">4.51s</span>
+                                    <span class="badge bg-secondary">$0.0002</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #28a745;">100%</strong>
+                                </div>
+                                <div class="response-container">
+                                    The letters used to represent coordinates in the Fourier domain instead of x and y are u and v.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-5-details"
+                aria-expanded="false" aria-controls="question-5-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="What does the Fourier transform do to a signal, and how is it achieved?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q5:</strong> What does the Fourier transform do to a signal, an...
+                </td>
+                <td><span class="badge bg-warning">medium</span></td>
+                <td>71%</td>
+                <td>100%</td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>3.09s</td>
+                <td>8.40s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-5-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> What does the Fourier transform do to a signal, and how is it achieved?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> Fourier transform decomposes a signal into its component frequencies by approximating the signal with a linear combination of sinusoids.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">71%</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745;">100%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">3.09s</td>
+                                    <td style="text-align: center;">8.40s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">166</td>
+                                    <td style="text-align: center;">1085</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">3.09s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">71%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The Fourier transform changes the frequencies of a signal and applies to the signal by transforming it into its component frequencies. This is achieved through a mathematical process that involves representing the signal as a combination of sines and cosines, which allows for the analysis of the signal in the frequency domain. The Fourier transform encodes magnitude, approximates the signal, and computes phase, facilitating frequency analysis.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">8.40s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #28a745;">100%</strong>
+                                </div>
+                                <div class="response-container">
+                                    The Fourier transform decomposes a signal into its component frequencies. It achieves this by approximating the signal as a linear combination of sinusoids (sine and cosine functions) of different frequencies. In practical applications, such as when working with computers, the discrete Fourier transform is used, which approximates the signal as closely as possible by using a finite number of sinusoids. Essentially, the Fourier transform allows us to analyze the frequency content of signals, whether one-dimensional (like sound waves) or two-dimensional (like images).
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-6-details"
+                aria-expanded="false" aria-controls="question-6-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="How do you compute the magnitude and phase of a Fourier transform?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q6:</strong> How do you compute the magnitude and phase of a Fo...
+                </td>
+                <td><span class="badge bg-warning">medium</span></td>
+                <td>19%</td>
+                <td>86%</td>
+                <td><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>3.56s</td>
+                <td>6.08s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-6-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> How do you compute the magnitude and phase of a Fourier transform?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> Magnitude is computed as the square root of the real part squared plus the imaginary part squared (absolute value of the complex number). Phase is computed as the arctangent of the imaginary part divided by the real part.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">19%</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745;">86%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">3.56s</td>
+                                    <td style="text-align: center;">6.08s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">99</td>
+                                    <td style="text-align: center;">1099</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">3.56s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">19%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The Knowledge Graph Context does not provide information on how to compute the magnitude and phase of a Fourier transform. Therefore, the answer cannot be determined from the context.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">6.08s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #28a745;">86%</strong>
+                                </div>
+                                <div class="response-container">
+                                    To compute the magnitude of a Fourier transform, you calculate the absolute value of a complex number, which is done using the formula: the square root of the real part squared plus the imaginary part squared. Mathematically, this can be expressed as:\n\n\\[\n\\text{Magnitude} = \\sqrt{(\\text{real part})^2 + (\\text{imaginary part})^2}\n\\]\n\nFor the phase of the Fourier transform, you compute the angle of the complex number using the arctangent function. This is done with the formula:\n\n\\[\n\\text{Phase} = \\arctan\\left(\\frac{\\text{imaginary part}}{\\text{real part}}\\right)\n\\]\n\nThis gives the phase shift that is needed for each sinusoid to reconstruct the original signal.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-7-details"
+                aria-expanded="false" aria-controls="question-7-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q7:</strong> In the Fourier domain visualization, why are some ...
+                </td>
+                <td><span class="badge bg-warning">medium</span></td>
+                <td>23%</td>
+                <td>48%</td>
+                <td><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>2.28s</td>
+                <td>8.06s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-7-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> Points further from the zero-zero component represent higher frequencies. High frequency means the pattern changes very fast (like from black to white and back quickly), while low frequency means it changes slowly. Distance from center indicates frequency magnitude.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">23%</span></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">48%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">2.28s</td>
+                                    <td style="text-align: center;">8.06s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">121</td>
+                                    <td style="text-align: center;">1115</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">2.28s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">23%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The information provided in the Knowledge Graph Context does not explicitly explain why some frequency points are further from the zero-zero component than others. Therefore, the answer cannot be determined from the context.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">8.06s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">48%</strong>
+                                </div>
+                                <div class="response-container">
+                                    In the Fourier domain visualization, frequency points are further from the zero-zero component based on the frequency of the sinusoidal waves that comprise the original signal. Points that are further away from the zero-zero component correspond to higher frequencies, which indicate that the signal changes rapidly, such as from black to white. Conversely, points that are closer to the zero-zero component represent lower frequencies, which change more slowly. This spatial arrangement in the Fourier domain helps distinguish between different rates of change in the original signal.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-8-details"
+                aria-expanded="false" aria-controls="question-8-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q8:</strong> Explain why Fourier transform is considered a glob...
+                </td>
+                <td><span class="badge bg-danger">hard</span></td>
+                <td>29%</td>
+                <td>66%</td>
+                <td><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>4.49s</td>
+                <td>8.01s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-8-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> Fourier transform is global because every point in the Fourier domain is computed as a sum over all pixels in the image - all pixels contribute to a single frequency point. This means you cannot determine where specific frequencies are located in the image (e.g., you can't identify frequencies present only in the sky region). This is problematic when working with images because we typically want to analyze local regions, not just global frequency content.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">29%</span></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">66%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">4.49s</td>
+                                    <td style="text-align: center;">8.01s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">317</td>
+                                    <td style="text-align: center;">1275</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0001</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">4.49s</span>
+                                    <span class="badge bg-secondary">$0.0001</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">29%</strong>
+                                </div>
+                                <div class="response-container">
+                                    This global perspective creates a problem for image analysis, specifically in terms of spatial resolution. Since the Fourier transform does not provide information about specific pixels or localized features, it can obscure fine details and variations in spatial patterns that are crucial for understanding local structures within an image. Consequently, while it allows for frequency analysis and understanding of overall patterns, it can make it challenging to discern specific characteristics or s
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">8.01s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">66%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Fourier transform is considered a global transformation because it analyzes and represents an entire signal or image in a single comprehensive output that encodes frequency information for all components of the input. This means that every point in the Fourier domain corresponds to a frequency that is derived from all pixels in the image, rather than focusing on individual or localized areas. \n\nThe problem this creates for image analysis is that it does not provide specific information about the spatial location of certain frequencies within the image. For instance, if a Fourier transform is applied to an image, it outputs a representation where the frequencies are averaged across the entire image. This makes it impossible to identify which specific pixels contribute to particular frequency components, leading to a loss of localized information. Consequently, analysts cannot discern where certain features, edges, or patterns are located in the image, which is often critical for tasks like object recognition or texture analysis.\n\nIn contrast, local transformations, such as convolution or image filtering, consider individual pixels and their neighborhoods, allowing for detailed region-specific information. This distinction is important when analyzing images, as regions often hold critical information that can be overlooked with a global approach like the Fourier transform.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-9-details"
+                aria-expanded="false" aria-controls="question-9-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q9:</strong> How are Gabor filters created, and what two key ad...
+                </td>
+                <td><span class="badge bg-danger">hard</span></td>
+                <td>21%</td>
+                <td>66%</td>
+                <td><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>2.60s</td>
+                <td>10.57s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-9-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> Gabor filters are created by multiplying a sine wave with a Gaussian kernel, which creates a wavelet (short wave) that only has values within a limited window. They provide two advantages: (1) localized frequencies - they tell you how much of a specific sine frequency is present at different locations in the image, and (2) localized orientations - the sine wave can be rotated to different angles.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545; font-size: 1.3em;">✗</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">21%</span></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">66%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">2.60s</td>
+                                    <td style="text-align: center;">10.57s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">124</td>
+                                    <td style="text-align: center;">1210</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">2.60s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">21%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The Knowledge Graph Context does not provide specific information on how Gabor filters are created, nor does it mention the key advantages they provide over standard Fourier transform. Therefore, the answer cannot be determined from the context.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">10.57s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">66%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Gabor filters are created by taking a sine wave and applying a Gaussian kernel on top of it. Essentially, this involves multiplying a sine wave by a Gaussian function, which results in a "squashed" sine wave that is localized in both frequency and space. This creates a wavelet that allows for localized frequency analysis in an image.\n\nTwo key advantages of Gabor filters over the standard Fourier transform are:\n\n1. **Localized Frequency Analysis**: Gabor filters provide localized information about the frequencies present in specific parts of an image, while the Fourier transform is a global transformation that averages contributions from all pixels, making it difficult to discern specific details in particular regions.\n\n2. **Localized Orientation Detection**: Gabor filters can be oriented at different angles, allowing them to detect the orientation of features within an image. This capability enables more nuanced analyses of image textures and patterns compared to the standard Fourier transform, which does not offer such orientation-specific detail.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-10-details"
+                aria-expanded="false" aria-controls="question-10-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q10:</strong> Explain the relationship between Euler's formula a...
+                </td>
+                <td><span class="badge bg-danger">hard</span></td>
+                <td>32%</td>
+                <td>66%</td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>4.53s</td>
+                <td>10.49s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-10-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> The Fourier transform formula uses e^(i*-2π*...) which is a complex number. According to Euler's formula, a complex number a+bi can be written as cos(θ) + i*sin(θ). Therefore, the e^(i*-2π*...) in the Fourier transform can be rewritten as cos(...) - i*sin(...). This is why Fourier transform creates linear combinations of sines and cosines (sinusoids) - it comes from the mathematical formulation using Euler's formula.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #dc3545;">32%</span></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">66%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">4.53s</td>
+                                    <td style="text-align: center;">10.49s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">285</td>
+                                    <td style="text-align: center;">1400</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0001</td>
+                                    <td style="text-align: center;">$0.0003</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">4.53s</span>
+                                    <span class="badge bg-secondary">$0.0001</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #dc3545;">32%</strong>
+                                </div>
+                                <div class="response-container">
+                                    In the context of the Fourier transform, the approximation of signals using sinusoids occurs because it decomposes a signal into its component frequencies—these sinusoids correspond to the frequency representation of the signal. The Fourier transform captures both the magnitude and phase of these sinusoidal components, thus enabling a comprehensive representation of the original signal through a global transformation. Consequently, the Fourier transform utilizes the properties of Euler's formula
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">10.49s</span>
+                                    <span class="badge bg-secondary">$0.0003</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">66%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Euler's formula plays a crucial role in the relationship between the Fourier transform and the approximation of signals using sinusoids. Euler's formula states that a complex number can be represented in terms of sine and cosine functions as follows:\n\n\\[ e^{i\\theta} = \\cos(\\theta) + i\\sin(\\theta) \\]\n\nThis relationship is foundational for understanding the Fourier transform because the transform operates by decomposing a signal into a linear combination of sinusoids (sines and cosines). \n\nWhen the Fourier transform is applied to a signal, it effectively converts the signal from its original time or image domain into the frequency domain (or Fourier domain). In this domain, each point corresponds to a frequency and is represented by a complex number that encompasses both a real part (associated with cosine) and an imaginary part (associated with sine). This means that each frequency component can be expressed as a combination of sine and cosine functions, reflecting how much of each sinusoid (i.e., each frequency) is present in the original signal.\n\nThe approximation of a signal using sinusoids arises from the ability to express any periodic function as a sum of these fundamental sine and cosine components due to the linearity of the Fourier transform. Essentially, the transformation reveals how a signal can be reconstructed from these sinusoids, with each sinusoid contributing to different frequency components of the signal.\n\nThus, the Fourier transform's use of Euler's formula to express complex numbers in terms of sines and cosines is key to understanding how it approximates signals through these waveforms, with the derived magnitude and phase providing the details about the contributions of each sinusoid in accurately reconstructing the original signal.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr class="clickable-row collapsed" data-bs-toggle="collapse" data-bs-target="#question-11-details"
+                aria-expanded="false" aria-controls="question-11-details"
+                style="cursor: pointer;">
+                <td style="text-align: left;" title="What programming language does the lecturer recommend for implementing Gabor filters?">
+                    <span class="collapse-arrow">▶</span>
+                    <strong>Q11:</strong> What programming language does the lecturer recomm...
+                </td>
+                <td><span class="badge bg-info">unanswerable</span></td>
+                <td>50%</td>
+                <td>75%</td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                <td>2.67s</td>
+                <td>3.35s</td>
+            </tr>
+        
+            <tr class="collapse" id="question-11-details">
+                <td colspan="8" style="padding: 0;">
+                    <div class="question-details-container">
+
+                        <!-- Full Question Text -->
+                        <p><strong>Question:</strong> What programming language does the lecturer recommend for implementing Gabor filters?</p>
+
+                        <!-- Expected Answer -->
+        
+                        <div class="expected-answer">
+                            <strong>Expected Answer:</strong> This information is not provided in the text.
+                        </div>
+            
+                        <!-- Performance Metrics Table -->
+                        <h6 class="mt-3">Performance Metrics</h6>
+                        <table class="table table-sm table-bordered" style="max-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th style="text-align: center;">Single File Mode</th>
+                                    <th style="text-align: center;">Multi File Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td><strong>Status</strong></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                    <td style="text-align: center;"><span style="color: #28a745; font-size: 1.3em;">✓</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">50%</span></td>
+                                    <td style="text-align: center;"><span style="color: #ffc107;">75%</span></td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Execution Time</strong></td>
+                                    <td style="text-align: center;">2.67s</td>
+                                    <td style="text-align: center;">3.35s</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Tokens Used</strong></td>
+                                    <td style="text-align: center;">108</td>
+                                    <td style="text-align: center;">1008</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><strong>Cost</strong></td>
+                                    <td style="text-align: center;">$0.0000</td>
+                                    <td style="text-align: center;">$0.0002</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <!-- System Responses -->
+                        <h6 class="mt-3">System Responses</h6>
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header single-file-mode">
+                                    Single File Mode
+                                    <span class="badge bg-danger">2.67s</span>
+                                    <span class="badge bg-secondary">$0.0000</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">50%</strong>
+                                </div>
+                                <div class="response-container">
+                                    Answer: The context provided does not contain any information about a programming language recommended by the lecturer for implementing Gabor filters. Therefore, the answer cannot be determined from the context.
+                                </div>
+                            </div>
+            
+                            <div class="col-md-6 mb-3">
+                                <div class="mode-header multi-file-mode">
+                                    Multi File Mode
+                                    <span class="badge bg-primary">3.35s</span>
+                                    <span class="badge bg-secondary">$0.0002</span>
+                                </div>
+                                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">
+                                    Accuracy: <strong style="color: #ffc107;">75%</strong>
+                                </div>
+                                <div class="response-container">
+                                    The lecturer does not explicitly mention a specific programming language for implementing Gabor filters in the provided context. Therefore, based on the given excerpts, there is no information available regarding a recommended programming language.
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    <div class="mt-2">
+        <small>
+            <span style="color: #28a745;">✓</span> = Pass (accuracy ≥30%) &nbsp;
+            <span style="color: #dc3545;">✗</span> = Fail
+        </small>
+    </div>
+    
+        </div>
+
+        <!-- Recommendations -->
+        <div class="system-card">
+            <h2>Recommendations</h2>
+            <ul><li><strong>For Accuracy:</strong> Use <code>multi-file mode</code> - it achieved 100% pass rate vs 50% for single-file mode</li><li><strong>For Speed:</strong> Use <code>single-file mode</code> - it's 2.3x faster on average</li><li><strong>For Cost Efficiency:</strong> Use <code>single-file mode</code> - it costs 7.7x less</li></ul>
+    <h4>General Recommendations</h4>
+    <ul>
+        <li>Multi-file mode provides better accuracy by leveraging richer context from multiple document pages</li>
+        <li>Single-file mode is significantly faster and more cost-effective for simple queries</li>
+        <li>Consider using multi-file mode for complex queries requiring deep understanding</li>
+        <li>Use single-file mode for quick lookups and simple factual questions</li>
+    </ul>
+    
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        
+        // Accuracy Comparison Chart
+        new Chart(document.getElementById('accuracyChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11"],
+                datasets: [
+                    {
+                        label: 'Single File Mode',
+                        data: [47.6, 0.0, 33.3, 70.6, 19.0, 22.6, 29.1, 20.8, 31.8, 50.0],
+                        backgroundColor: '#FF6384'
+                    },
+                    {
+                        label: 'Multi File Mode',
+                        data: [90.5, 33.3, 100.0, 100.0, 85.7, 48.4, 65.5, 66.0, 65.9, 75.0],
+                        backgroundColor: '#36A2EB'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Accuracy Comparison by Question'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Accuracy (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Execution Time Comparison Chart
+        new Chart(document.getElementById('executionTimeChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11"],
+                datasets: [
+                    {
+                        label: 'Single File Mode',
+                        data: [2.25, 2.04, 2.26, 3.09, 3.56, 2.28, 4.49, 2.6, 4.53, 2.67],
+                        backgroundColor: '#FF6384'
+                    },
+                    {
+                        label: 'Multi File Mode',
+                        data: [4.92, 3.45, 4.51, 8.4, 6.08, 8.06, 8.01, 10.57, 10.49, 3.35],
+                        backgroundColor: '#36A2EB'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Execution Time Comparison by Question'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Time (seconds)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Token Usage Comparison Chart
+        new Chart(document.getElementById('tokenUsageChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11"],
+                datasets: [
+                    {
+                        label: 'Single File Mode',
+                        data: [96, 63, 91, 166, 99, 121, 317, 124, 285, 108],
+                        backgroundColor: '#FF6384'
+                    },
+                    {
+                        label: 'Multi File Mode',
+                        data: [1056, 1010, 935, 1085, 1099, 1115, 1275, 1210, 1400, 1008],
+                        backgroundColor: '#36A2EB'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Token Usage Comparison by Question'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Tokens'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Cost Comparison Chart
+        new Chart(document.getElementById('costChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11"],
+                datasets: [
+                    {
+                        label: 'Single File Mode',
+                        data: [0.0228, 0.0147, 0.0216, 0.0396, 0.0232, 0.0288, 0.0757, 0.0292, 0.0684, 0.0255],
+                        backgroundColor: '#FF6384'
+                    },
+                    {
+                        label: 'Multi File Mode',
+                        data: [0.2532, 0.2424, 0.2244, 0.2604, 0.2633, 0.2676, 0.306, 0.2904, 0.336, 0.2415],
+                        backgroundColor: '#36A2EB'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Cost Comparison by Question (cents)'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cost (cents)'
+                        }
+                    }
+                }
+            }
+        });
+    
+        // Handle collapse arrow rotation
+        document.addEventListener('DOMContentLoaded', function() {
+            var collapsibleRows = document.querySelectorAll('[data-bs-toggle="collapse"]');
+
+            collapsibleRows.forEach(function(row) {
+                var targetId = row.getAttribute('data-bs-target');
+                var targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.addEventListener('show.bs.collapse', function() {
+                        row.classList.remove('collapsed');
+                        var arrow = row.querySelector('.collapse-arrow');
+                        if (arrow) {
+                            arrow.style.transform = 'rotate(90deg)';
+                        }
+                    });
+
+                    targetElement.addEventListener('hide.bs.collapse', function() {
+                        row.classList.add('collapsed');
+                        var arrow = row.querySelector('.collapse-arrow');
+                        if (arrow) {
+                            arrow.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                }
+            });
+        });
+    
+    </script>
+</body>
+</html>

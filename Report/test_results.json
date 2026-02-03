@@ -1,0 +1,1099 @@
+{
+  "metadata": {
+    "timestamp": "2026-02-02T14:10:14.954843",
+    "test_type": "kg_rag_cli_mode_comparison",
+    "single_file_path": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/kg_rag_cli/Input/SinglePage/Mathprez.txt",
+    "multi_file_path": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/kg_rag_cli/Input/MultiPage/Transcripts-Mathprez",
+    "test_questions_source": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/kg_rag_cli/Input/MultiPage/Transcripts-Mathprez/test_questions.json",
+    "total_configs": 2,
+    "total_queries": 22,
+    "validation_queries": 2,
+    "test_queries": 20,
+    "timeout_seconds": 600,
+    "output_dir": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/test_results_mathprez_kg_modes_20260202_141014",
+    "successful_validations": 2,
+    "successful_test_queries": 20,
+    "total_execution_time_seconds": 141.38307690620422
+  },
+  "systems": {
+    "kg_rag_cli_single_file": {
+      "validation": {
+        "success": true,
+        "question_id": 1,
+        "question": "What is the main topic of this lecture?",
+        "expected_answer": "Gabor filters",
+        "response": "Answer: The main topic of the lecture is Gabor filters and their associated concepts, including frequency analysis, Fourier transforms, and signal approximation.",
+        "time": 3.218048095703125,
+        "timeout": false,
+        "tokens": {
+          "input": 67,
+          "output": 16,
+          "total": 84,
+          "estimated": true
+        },
+        "cost": 1.965e-05,
+        "accuracy_scores": {
+          "semantic_similarity": 0.0,
+          "word_overlap": 1.0,
+          "overall_accuracy": 1.0,
+          "honest_acknowledgment": false,
+          "method": "lexical"
+        },
+        "pass_fail": {
+          "passed": true,
+          "accuracy": 1.0,
+          "threshold": 0.3,
+          "status": "PASS"
+        },
+        "threshold_used": 0.75,
+        "attempts": 1,
+        "retry_triggered": false,
+        "error": null,
+        "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: What is the main topic of this lecture?\n\nAnswer: The main topic of the lecture is Gabor filters and their associated concepts, including frequency analysis, Fourier transforms, and signal approximation.\n\n"
+      },
+      "queries": [
+        {
+          "question_id": 2,
+          "question": "What is a filter according to the lecture?",
+          "difficulty": "easy",
+          "category": "direct_recall",
+          "expected_answer": "A filter is a matrix of numbers, typically used in operations such as convolution or correlation. It's also synonymous with kernel.",
+          "response": "Answer: A filter is clarified as matrix modification and is described as a kernel that has numerical attributes. It uses methods like convolution and correlation. An example of a filter is a Gabor filter.",
+          "execution_time": 2.247230052947998,
+          "timeout": false,
+          "tokens": {
+            "input": 76,
+            "output": 19,
+            "total": 96,
+            "estimated": true
+          },
+          "cost": 2.2800000000000002e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.476,
+            "overall_accuracy": 0.476,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.476,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: What is a filter according to the lecture?\n\nAnswer: A filter is clarified as matrix modification and is described as a kernel that has numerical attributes. It uses methods like convolution and correlation. An example of a filter is a Gabor filter.\n\n"
+        },
+        {
+          "question_id": 3,
+          "question": "At what age did the lecturer start doing computer science?",
+          "difficulty": "easy",
+          "category": "direct_recall",
+          "expected_answer": "14 years old",
+          "response": "Answer: The answer cannot be determined from the context.",
+          "execution_time": 2.039005994796753,
+          "timeout": false,
+          "tokens": {
+            "input": 50,
+            "output": 12,
+            "total": 63,
+            "estimated": true
+          },
+          "cost": 1.47e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.0,
+            "overall_accuracy": 0.0,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": false,
+            "accuracy": 0.0,
+            "threshold": 0.3,
+            "status": "FAIL"
+          },
+          "threshold_used": 0.1,
+          "attempts": 4,
+          "retry_triggered": true,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: At what age did the lecturer start doing computer science?\n\nAnswer: The answer cannot be determined from the context.\n\n"
+        },
+        {
+          "question_id": 4,
+          "question": "What letters are used to represent coordinates in the Fourier domain instead of x and y?",
+          "difficulty": "easy",
+          "category": "direct_recall",
+          "expected_answer": "u and v",
+          "response": "Answer: The letters used to represent coordinates in the Fourier domain instead of x and y cannot be determined from the context provided.",
+          "execution_time": 2.2616891860961914,
+          "timeout": false,
+          "tokens": {
+            "input": 72,
+            "output": 18,
+            "total": 91,
+            "estimated": true
+          },
+          "cost": 2.16e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.333,
+            "overall_accuracy": 0.333,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.333,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: What letters are used to represent coordinates in the Fourier domain instead of x and y?\n\nAnswer: The letters used to represent coordinates in the Fourier domain instead of x and y cannot be determined from the context provided.\n\n"
+        },
+        {
+          "question_id": 5,
+          "question": "What does the Fourier transform do to a signal, and how is it achieved?",
+          "difficulty": "medium",
+          "category": "connecting_information",
+          "expected_answer": "Fourier transform decomposes a signal into its component frequencies by approximating the signal with a linear combination of sinusoids.",
+          "response": "Answer: The Fourier transform changes the frequencies of a signal and applies to the signal by transforming it into its component frequencies. This is achieved through a mathematical process that involves representing the signal as a combination of sines and cosines, which allows for the analysis of the signal in the frequency domain. The Fourier transform encodes magnitude, approximates the signal, and computes phase, facilitating frequency analysis.",
+          "execution_time": 3.0941200256347656,
+          "timeout": false,
+          "tokens": {
+            "input": 132,
+            "output": 33,
+            "total": 166,
+            "estimated": true
+          },
+          "cost": 3.96e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.706,
+            "overall_accuracy": 0.706,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.706,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: What does the Fourier transform do to a signal, and how is it achieved?\n\nAnswer: The Fourier transform changes the frequencies of a signal and applies to the signal by transforming it into its component frequencies. This is achieved through a mathematical process that involves representing the signal as a combination of sines and cosines, which allows for the analysis of the signal in the frequency domain. The Fourier transform encodes magnitude, approximates the signal, and computes phase, facilitating frequency analysis.\n\n"
+        },
+        {
+          "question_id": 6,
+          "question": "How do you compute the magnitude and phase of a Fourier transform?",
+          "difficulty": "medium",
+          "category": "connecting_information",
+          "expected_answer": "Magnitude is computed as the square root of the real part squared plus the imaginary part squared (absolute value of the complex number). Phase is computed as the arctangent of the imaginary part divided by the real part.",
+          "response": "Answer: The Knowledge Graph Context does not provide information on how to compute the magnitude and phase of a Fourier transform. Therefore, the answer cannot be determined from the context.",
+          "execution_time": 3.5564091205596924,
+          "timeout": false,
+          "tokens": {
+            "input": 79,
+            "output": 19,
+            "total": 99,
+            "estimated": true
+          },
+          "cost": 2.325e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.19,
+            "overall_accuracy": 0.19,
+            "honest_acknowledgment": true,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": false,
+            "accuracy": 0.19,
+            "threshold": 0.3,
+            "status": "FAIL"
+          },
+          "threshold_used": 0.1,
+          "attempts": 4,
+          "retry_triggered": true,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: How do you compute the magnitude and phase of a Fourier transform?\n\nAnswer: The Knowledge Graph Context does not provide information on how to compute the magnitude and phase of a Fourier transform. Therefore, the answer cannot be determined from the context.\n\n"
+        },
+        {
+          "question_id": 7,
+          "question": "In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?",
+          "difficulty": "medium",
+          "category": "connecting_information",
+          "expected_answer": "Points further from the zero-zero component represent higher frequencies. High frequency means the pattern changes very fast (like from black to white and back quickly), while low frequency means it changes slowly. Distance from center indicates frequency magnitude.",
+          "response": "Answer: The information provided in the Knowledge Graph Context does not explicitly explain why some frequency points are further from the zero-zero component than others. Therefore, the answer cannot be determined from the context.",
+          "execution_time": 2.279545307159424,
+          "timeout": false,
+          "tokens": {
+            "input": 96,
+            "output": 24,
+            "total": 121,
+            "estimated": true
+          },
+          "cost": 2.88e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.226,
+            "overall_accuracy": 0.226,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": false,
+            "accuracy": 0.226,
+            "threshold": 0.3,
+            "status": "FAIL"
+          },
+          "threshold_used": 0.1,
+          "attempts": 4,
+          "retry_triggered": true,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?\n\nAnswer: The information provided in the Knowledge Graph Context does not explicitly explain why some frequency points are further from the zero-zero component than others. Therefore, the answer cannot be determined from the context.\n\n"
+        },
+        {
+          "question_id": 8,
+          "question": "Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.",
+          "difficulty": "hard",
+          "category": "synthesis_causality",
+          "expected_answer": "Fourier transform is global because every point in the Fourier domain is computed as a sum over all pixels in the image - all pixels contribute to a single frequency point. This means you cannot determine where specific frequencies are located in the image (e.g., you can't identify frequencies present only in the sky region). This is problematic when working with images because we typically want to analyze local regions, not just global frequency content.",
+          "response": "This global perspective creates a problem for image analysis, specifically in terms of spatial resolution. Since the Fourier transform does not provide information about specific pixels or localized features, it can obscure fine details and variations in spatial patterns that are crucial for understanding local structures within an image. Consequently, while it allows for frequency analysis and understanding of overall patterns, it can make it challenging to discern specific characteristics or s",
+          "execution_time": 4.48557710647583,
+          "timeout": false,
+          "tokens": {
+            "input": 253,
+            "output": 63,
+            "total": 317,
+            "estimated": true
+          },
+          "cost": 7.575e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.291,
+            "overall_accuracy": 0.291,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": false,
+            "accuracy": 0.291,
+            "threshold": 0.3,
+            "status": "FAIL"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.\n\nAnswer: The Fourier transform is considered a global transformation because it analyzes the entire signal or image as a whole rather than focusing on localized sections. This means that the Fourier transform provides a frequency representation that encompasses all the frequencies present in the signal or image, which is encoded as a combination of sines and cosines across the entire domain.\n\nThis global perspective creates a problem for image analysis, specifically in terms of spatial resolution. Since the Fourier transform does not provide information about specific pixels or localized features, it can obscure fine details and variations in spatial patterns that are crucial for understanding local structures within an image. Consequently, while it allows for frequency analysis and understanding of overall patterns, it can make it challenging to discern specific characteristics or structures that might be important in tasks such as object recognition or image segmentation.\n\n"
+        },
+        {
+          "question_id": 9,
+          "question": "How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?",
+          "difficulty": "hard",
+          "category": "synthesis_causality",
+          "expected_answer": "Gabor filters are created by multiplying a sine wave with a Gaussian kernel, which creates a wavelet (short wave) that only has values within a limited window. They provide two advantages: (1) localized frequencies - they tell you how much of a specific sine frequency is present at different locations in the image, and (2) localized orientations - the sine wave can be rotated to different angles.",
+          "response": "Answer: The Knowledge Graph Context does not provide specific information on how Gabor filters are created, nor does it mention the key advantages they provide over standard Fourier transform. Therefore, the answer cannot be determined from the context.",
+          "execution_time": 2.601569890975952,
+          "timeout": false,
+          "tokens": {
+            "input": 99,
+            "output": 24,
+            "total": 124,
+            "estimated": true
+          },
+          "cost": 2.925e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.208,
+            "overall_accuracy": 0.208,
+            "honest_acknowledgment": true,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": false,
+            "accuracy": 0.208,
+            "threshold": 0.3,
+            "status": "FAIL"
+          },
+          "threshold_used": 0.1,
+          "attempts": 4,
+          "retry_triggered": true,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?\n\nAnswer: The Knowledge Graph Context does not provide specific information on how Gabor filters are created, nor does it mention the key advantages they provide over standard Fourier transform. Therefore, the answer cannot be determined from the context.\n\n"
+        },
+        {
+          "question_id": 10,
+          "question": "Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.",
+          "difficulty": "hard",
+          "category": "synthesis_causality",
+          "expected_answer": "The Fourier transform formula uses e^(i*-2\u03c0*...) which is a complex number. According to Euler's formula, a complex number a+bi can be written as cos(\u03b8) + i*sin(\u03b8). Therefore, the e^(i*-2\u03c0*...) in the Fourier transform can be rewritten as cos(...) - i*sin(...). This is why Fourier transform creates linear combinations of sines and cosines (sinusoids) - it comes from the mathematical formulation using Euler's formula.",
+          "response": "In the context of the Fourier transform, the approximation of signals using sinusoids occurs because it decomposes a signal into its component frequencies\u2014these sinusoids correspond to the frequency representation of the signal. The Fourier transform captures both the magnitude and phase of these sinusoidal components, thus enabling a comprehensive representation of the original signal through a global transformation. Consequently, the Fourier transform utilizes the properties of Euler's formula",
+          "execution_time": 4.529902935028076,
+          "timeout": false,
+          "tokens": {
+            "input": 228,
+            "output": 57,
+            "total": 285,
+            "estimated": true
+          },
+          "cost": 6.84e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.318,
+            "overall_accuracy": 0.318,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.318,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.\n\nAnswer: Euler's formula relates complex numbers to trigonometric functions, stating that \\( e^{i\\theta} = \\cos(\\theta) + i\\sin(\\theta) \\). This relationship allows the Fourier transform to represent signals as a combination of sines and cosines, which are periodic functions that can approximate various patterns and shapes in signals. \n\nIn the context of the Fourier transform, the approximation of signals using sinusoids occurs because it decomposes a signal into its component frequencies\u2014these sinusoids correspond to the frequency representation of the signal. The Fourier transform captures both the magnitude and phase of these sinusoidal components, thus enabling a comprehensive representation of the original signal through a global transformation. Consequently, the Fourier transform utilizes the properties of Euler's formula to encode the frequencies of the signal effectively.\n\n"
+        },
+        {
+          "question_id": 11,
+          "question": "What programming language does the lecturer recommend for implementing Gabor filters?",
+          "difficulty": "unanswerable",
+          "category": "not_in_data",
+          "expected_answer": "This information is not provided in the text.",
+          "response": "Answer: The context provided does not contain any information about a programming language recommended by the lecturer for implementing Gabor filters. Therefore, the answer cannot be determined from the context.",
+          "execution_time": 2.6696481704711914,
+          "timeout": false,
+          "tokens": {
+            "input": 86,
+            "output": 21,
+            "total": 108,
+            "estimated": true
+          },
+          "cost": 2.55e-05,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.5,
+            "overall_accuracy": 0.5,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.5,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.25,
+          "attempts": 3,
+          "retry_triggered": true,
+          "error": null,
+          "full_output": "Loading graph: kg_store/Users_plouismarie_Documents_apple2_s3userskubev2_amaai_kg_rag_cli_Input_SinglePage_Mathprez.txt.gml\n\nQuestion: What programming language does the lecturer recommend for implementing Gabor filters?\n\nAnswer: The context provided does not contain any information about a programming language recommended by the lecturer for implementing Gabor filters. Therefore, the answer cannot be determined from the context.\n\n"
+        }
+      ],
+      "pass_rate_summary": {
+        "total_questions": 10,
+        "passed_questions": 5,
+        "failed_questions": 5,
+        "pass_rate": 0.5,
+        "pass_rate_pct": "50.0%"
+      }
+    },
+    "kg_rag_cli_multi_file": {
+      "validation": {
+        "success": true,
+        "question_id": 1,
+        "question": "What is the main topic of this lecture?",
+        "expected_answer": "Gabor filters",
+        "response": "The main topic of this lecture is Gabor filters, which build on the concepts of the Fourier transform and are used for analyzing the frequencies present in specific parts of images.",
+        "time": 6.004626035690308,
+        "timeout": false,
+        "tokens": {
+          "input": 811,
+          "output": 202,
+          "total": 1014,
+          "estimated": true
+        },
+        "cost": 0.00024284999999999997,
+        "accuracy_scores": {
+          "semantic_similarity": 0.0,
+          "word_overlap": 1.0,
+          "overall_accuracy": 1.0,
+          "honest_acknowledgment": false,
+          "method": "lexical"
+        },
+        "pass_fail": {
+          "passed": true,
+          "accuracy": 1.0,
+          "threshold": 0.3,
+          "status": "PASS"
+        },
+        "threshold_used": 0.75,
+        "attempts": 1,
+        "retry_triggered": false,
+        "error": null,
+        "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: What is the main topic of this lecture?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[Hybrid] No chunks at threshold 0.75, retrying at 0.50...\n[Hybrid] \u2713 Found 12 candidates at threshold 0.50\n[GraphStore] Extracted subgraph: 50 nodes, 80 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent='The main topic of this lecture is Gabor filters, which build on the concepts of the Fourier transform and are used for analyzing the frequencies present in specific parts of images.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 4844, 'total_tokens': 4878, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wQfUjAdSoVbdzMNB4TG0Y0E9nLr', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-1930-7d92-a40a-2bcd1c3af4e6-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 4844, 'output_tokens': 34, 'total_tokens': 4878, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: [\"Today's topic is Gabor filters\", 'What is a filter?', '\"Two points around the center in the Fourier transform\"', 'explain to you the actual formula', 'This', 'further distance from the zero zero component', '\"Certain frequency of the sinusoid\"', '\"The average of the image\"', 'Phase of the Fourier transform', 'LECTURE']\n  RAG chunks used: 12 (from 12 candidates)\n  RAG tokens used: ~4882 / 121991 available\n  KG nodes used: 50\n  KG edges used: 80\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [RAG + 38 KG relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 10 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 18 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG + 4 KG relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 8 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 2 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\nNo relevant docs were retrieved using the relevance score threshold 0.75\n"
+      },
+      "queries": [
+        {
+          "question_id": 2,
+          "question": "What is a filter according to the lecture?",
+          "difficulty": "easy",
+          "category": "direct_recall",
+          "expected_answer": "A filter is a matrix of numbers, typically used in operations such as convolution or correlation. It's also synonymous with kernel.",
+          "response": "A filter is described in the lecture as a matrix of numbers that alters the values in an image. It is typically used in operations such as convolution or correlation and is synonymous with the term \"kernel.\" Filters, including Gabor filters, are applied to process images by modifying specific frequencies.",
+          "execution_time": 4.922598838806152,
+          "timeout": false,
+          "tokens": {
+            "input": 844,
+            "output": 211,
+            "total": 1056,
+            "estimated": true
+          },
+          "cost": 0.0002532,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.905,
+            "overall_accuracy": 0.905,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.905,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: What is a filter according to the lecture?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[Hybrid] No chunks at threshold 0.75, retrying at 0.50...\n[Hybrid] \u2713 Found 12 candidates at threshold 0.50\n[GraphStore] Extracted subgraph: 50 nodes, 17 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent='A filter is described in the lecture as a matrix of numbers that alters the values in an image. It is typically used in operations such as convolution or correlation and is synonymous with the term \"kernel.\" Filters, including Gabor filters, are applied to process images by modifying specific frequencies.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 4847, 'total_tokens': 4904, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wQkAyJ04BeA0GG6DLad1YNGG0e2', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-3108-7300-bd8e-7b7f549abfe4-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 4847, 'output_tokens': 57, 'total_tokens': 4904, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['\"Can we say something about the frequencies present?\"', 'Approximation of the signal', '\"What is the distance between these points?\"', 'A filter is a matrix modification', 'further distance from the zero zero component', 'Asking questions during the lecture', 'What does a filter do?', 'angle of the Fourier transform', '\"Will have the average of the image as the zero zero component\"', 'shift into where the sinusoid starts']\n  RAG chunks used: 12 (from 12 candidates)\n  RAG tokens used: ~4882 / 121990 available\n  KG nodes used: 50\n  KG edges used: 17\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [RAG + 1 KG relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 14 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 2 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\nNo relevant docs were retrieved using the relevance score threshold 0.75\n"
+        },
+        {
+          "question_id": 3,
+          "question": "At what age did the lecturer start doing computer science?",
+          "difficulty": "easy",
+          "category": "direct_recall",
+          "expected_answer": "14 years old",
+          "response": "The lecturer started doing computer science at the age of 14.",
+          "execution_time": 3.4468581676483154,
+          "timeout": false,
+          "tokens": {
+            "input": 808,
+            "output": 202,
+            "total": 1010,
+            "estimated": true
+          },
+          "cost": 0.00024239999999999998,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.333,
+            "overall_accuracy": 0.333,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.333,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: At what age did the lecturer start doing computer science?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[Hybrid] No chunks at threshold 0.75, retrying at 0.50...\n[Hybrid] \u2713 Found 12 candidates at threshold 0.50\n[GraphStore] Extracted subgraph: 50 nodes, 33 edges in 0.000s\n\n============================================================\nRESPONSE\n============================================================\ncontent='The lecturer started doing computer science at the age of 14.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 13, 'prompt_tokens': 4855, 'total_tokens': 4868, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wQpeI9XKIyckKMIMFeuD35Ci4I1', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-4355-70d2-83ad-8ff00f07b52b-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 4855, 'output_tokens': 13, 'total_tokens': 4868, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['Approximation of the signal', 'Number at every location in the frequency domain', '\"When we work with images, we want to say something about the regions in the images.\"', '\"Two frequencies along the vertical direction\"', 'different point along the side', 'Phase of the Fourier transform', 'What is a filter?', 'Quality of the signal', 'Data position on the original image', 'zero at the bottom right corner']\n  RAG chunks used: 12 (from 12 candidates)\n  RAG tokens used: ~4882 / 121986 available\n  KG nodes used: 50\n  KG edges used: 33\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [RAG + 1 KG relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 6 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 6 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG + 6 KG relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 12 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 2 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\nNo relevant docs were retrieved using the relevance score threshold 0.75\n"
+        },
+        {
+          "question_id": 4,
+          "question": "What letters are used to represent coordinates in the Fourier domain instead of x and y?",
+          "difficulty": "easy",
+          "category": "direct_recall",
+          "expected_answer": "u and v",
+          "response": "The letters used to represent coordinates in the Fourier domain instead of x and y are u and v.",
+          "execution_time": 4.5097620487213135,
+          "timeout": false,
+          "tokens": {
+            "input": 748,
+            "output": 187,
+            "total": 935,
+            "estimated": true
+          },
+          "cost": 0.00022439999999999998,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 1.0,
+            "overall_accuracy": 1.0,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 1.0,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: What letters are used to represent coordinates in the Fourier domain instead of x and y?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 67 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent='The letters used to represent coordinates in the Fourier domain instead of x and y are u and v.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 20, 'prompt_tokens': 1907, 'total_tokens': 1927, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wQuy0Co7gajnWaFOtUvHk9SJ1ES', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-54e2-7612-9d49-a5830f565591-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 1907, 'output_tokens': 20, 'total_tokens': 1927, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['Quality of the signal', 'attribute of Fourier transform', 'Fourier values', '\"Certain frequency of the sinusoid\"', 'What does a filter do?', 'Data position on the original image', '\"One second. The pointer refuses to cooperate.\"', 'Approximation of the signal', '\"Will have the average of the image as the zero zero component\"', 'Asking questions if terms are unclear']\n  RAG chunks used: 2 (from 2 candidates)\n  RAG tokens used: ~1638 / 121978 available\n  KG nodes used: 50\n  KG edges used: 67\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 5\n  \u2022 Page 1 (3015 chars) [KG: 43 relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [KG: 12 relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 4 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [KG: 8 relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 5,
+          "question": "What does the Fourier transform do to a signal, and how is it achieved?",
+          "difficulty": "medium",
+          "category": "connecting_information",
+          "expected_answer": "Fourier transform decomposes a signal into its component frequencies by approximating the signal with a linear combination of sinusoids.",
+          "response": "The Fourier transform decomposes a signal into its component frequencies. It achieves this by approximating the signal as a linear combination of sinusoids (sine and cosine functions) of different frequencies. In practical applications, such as when working with computers, the discrete Fourier transform is used, which approximates the signal as closely as possible by using a finite number of sinusoids. Essentially, the Fourier transform allows us to analyze the frequency content of signals, whether one-dimensional (like sound waves) or two-dimensional (like images).",
+          "execution_time": 8.398700952529907,
+          "timeout": false,
+          "tokens": {
+            "input": 868,
+            "output": 217,
+            "total": 1085,
+            "estimated": true
+          },
+          "cost": 0.0002604,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 1.0,
+            "overall_accuracy": 1.0,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 1.0,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: What does the Fourier transform do to a signal, and how is it achieved?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 55 edges in 0.000s\n\n============================================================\nRESPONSE\n============================================================\ncontent='The Fourier transform decomposes a signal into its component frequencies. It achieves this by approximating the signal as a linear combination of sinusoids (sine and cosine functions) of different frequencies. In practical applications, such as when working with computers, the discrete Fourier transform is used, which approximates the signal as closely as possible by using a finite number of sinusoids. Essentially, the Fourier transform allows us to analyze the frequency content of signals, whether one-dimensional (like sound waves) or two-dimensional (like images).' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 106, 'prompt_tokens': 4796, 'total_tokens': 4902, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_6b23b3aa8a', 'id': 'chatcmpl-D4wQxFmpOa7xDEkVMoqlushFHEDQs', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-6168-7b02-98e3-ed268ca3f950-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 4796, 'output_tokens': 106, 'total_tokens': 4902, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['What is a filter?', 'shift into where the sinusoid starts', 'the image variations', 'Phase of the Fourier transform', 'Discussion about magnitude and phase', 'Single point in Fourier domain', '\"What does a Fourier transform do intuitively?\"', 'LOCALIZED VERSION OF FOURIER TRANSFORM', 'Every point in the Fourier domain', 'Programming and technical terminology']\n  RAG chunks used: 7 (from 7 candidates)\n  RAG tokens used: ~4841 / 121983 available\n  KG nodes used: 50\n  KG edges used: 55\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [RAG + 17 KG relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 2 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 4 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG + 8 KG relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 12 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 12 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 6,
+          "question": "How do you compute the magnitude and phase of a Fourier transform?",
+          "difficulty": "medium",
+          "category": "connecting_information",
+          "expected_answer": "Magnitude is computed as the square root of the real part squared plus the imaginary part squared (absolute value of the complex number). Phase is computed as the arctangent of the imaginary part divided by the real part.",
+          "response": "To compute the magnitude of a Fourier transform, you calculate the absolute value of a complex number, which is done using the formula: the square root of the real part squared plus the imaginary part squared. Mathematically, this can be expressed as:\\n\\n\\\\[\\n\\\\text{Magnitude} = \\\\sqrt{(\\\\text{real part})^2 + (\\\\text{imaginary part})^2}\\n\\\\]\\n\\nFor the phase of the Fourier transform, you compute the angle of the complex number using the arctangent function. This is done with the formula:\\n\\n\\\\[\\n\\\\text{Phase} = \\\\arctan\\\\left(\\\\frac{\\\\text{imaginary part}}{\\\\text{real part}}\\\\right)\\n\\\\]\\n\\nThis gives the phase shift that is needed for each sinusoid to reconstruct the original signal.",
+          "execution_time": 6.077646970748901,
+          "timeout": false,
+          "tokens": {
+            "input": 879,
+            "output": 219,
+            "total": 1099,
+            "estimated": true
+          },
+          "cost": 0.00026325000000000003,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.857,
+            "overall_accuracy": 0.857,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.857,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: How do you compute the magnitude and phase of a Fourier transform?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 78 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent='To compute the magnitude of a Fourier transform, you calculate the absolute value of a complex number, which is done using the formula: the square root of the real part squared plus the imaginary part squared. Mathematically, this can be expressed as:\\n\\n\\\\[\\n\\\\text{Magnitude} = \\\\sqrt{(\\\\text{real part})^2 + (\\\\text{imaginary part})^2}\\n\\\\]\\n\\nFor the phase of the Fourier transform, you compute the angle of the complex number using the arctangent function. This is done with the formula:\\n\\n\\\\[\\n\\\\text{Phase} = \\\\arctan\\\\left(\\\\frac{\\\\text{imaginary part}}{\\\\text{real part}}\\\\right)\\n\\\\]\\n\\nThis gives the phase shift that is needed for each sinusoid to reconstruct the original signal.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 163, 'prompt_tokens': 3454, 'total_tokens': 3617, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wR5SiwVLXcezB7OaTkjEcVL3s6l', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-82cc-7ff3-8bc0-10d6a66f6d9f-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 3454, 'output_tokens': 163, 'total_tokens': 3617, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['sum of the zero zero', 'Fourier domain', 'Coordinates of the Fourier transform', 'Discussion about magnitude and phase', 'angle of the Fourier transform', 'Fourier component', 'further distance from the zero zero component', 'different point along the side', 'Point in Fourier domain', 'Thoughts about phase']\n  RAG chunks used: 7 (from 7 candidates)\n  RAG tokens used: ~3345 / 121984 available\n  KG nodes used: 50\n  KG edges used: 78\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [KG: 4 relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 6 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 12 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG + 14 KG relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 14 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [KG: 28 relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 7,
+          "question": "In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?",
+          "difficulty": "medium",
+          "category": "connecting_information",
+          "expected_answer": "Points further from the zero-zero component represent higher frequencies. High frequency means the pattern changes very fast (like from black to white and back quickly), while low frequency means it changes slowly. Distance from center indicates frequency magnitude.",
+          "response": "In the Fourier domain visualization, frequency points are further from the zero-zero component based on the frequency of the sinusoidal waves that comprise the original signal. Points that are further away from the zero-zero component correspond to higher frequencies, which indicate that the signal changes rapidly, such as from black to white. Conversely, points that are closer to the zero-zero component represent lower frequencies, which change more slowly. This spatial arrangement in the Fourier domain helps distinguish between different rates of change in the original signal.",
+          "execution_time": 8.05942702293396,
+          "timeout": false,
+          "tokens": {
+            "input": 892,
+            "output": 223,
+            "total": 1115,
+            "estimated": true
+          },
+          "cost": 0.0002676,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.484,
+            "overall_accuracy": 0.484,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.484,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 70 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent='In the Fourier domain visualization, frequency points are further from the zero-zero component based on the frequency of the sinusoidal waves that comprise the original signal. Points that are further away from the zero-zero component correspond to higher frequencies, which indicate that the signal changes rapidly, such as from black to white. Conversely, points that are closer to the zero-zero component represent lower frequencies, which change more slowly. This spatial arrangement in the Fourier domain helps distinguish between different rates of change in the original signal.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 99, 'prompt_tokens': 4114, 'total_tokens': 4213, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_6b23b3aa8a', 'id': 'chatcmpl-D4wRCresxSIXpLCpcnmYbzRgRscPv', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-9b6f-7763-a434-9361b50eab0d-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 4114, 'output_tokens': 99, 'total_tokens': 4213, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['\"What is the distance between these points?\"', 'Number at every location in the frequency domain', 'Frequency in y direction', '\"Certain frequency of the sinusoid\"', '\"One second. The pointer refuses to cooperate.\"', 'certain u, v frequency combinations', 'Actual Frequency', '\"There\\'s not much information about where these pixels are here.\"', 'Participants are close to understanding phase', 'sinusoid with certain frequency']\n  RAG chunks used: 7 (from 7 candidates)\n  RAG tokens used: ~4106 / 121971 available\n  KG nodes used: 50\n  KG edges used: 70\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [KG: 4 relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 16 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 8 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG + 20 KG relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 4 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 18 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 8,
+          "question": "Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.",
+          "difficulty": "hard",
+          "category": "synthesis_causality",
+          "expected_answer": "Fourier transform is global because every point in the Fourier domain is computed as a sum over all pixels in the image - all pixels contribute to a single frequency point. This means you cannot determine where specific frequencies are located in the image (e.g., you can't identify frequencies present only in the sky region). This is problematic when working with images because we typically want to analyze local regions, not just global frequency content.",
+          "response": "Fourier transform is considered a global transformation because it analyzes and represents an entire signal or image in a single comprehensive output that encodes frequency information for all components of the input. This means that every point in the Fourier domain corresponds to a frequency that is derived from all pixels in the image, rather than focusing on individual or localized areas. \\n\\nThe problem this creates for image analysis is that it does not provide specific information about the spatial location of certain frequencies within the image. For instance, if a Fourier transform is applied to an image, it outputs a representation where the frequencies are averaged across the entire image. This makes it impossible to identify which specific pixels contribute to particular frequency components, leading to a loss of localized information. Consequently, analysts cannot discern where certain features, edges, or patterns are located in the image, which is often critical for tasks like object recognition or texture analysis.\\n\\nIn contrast, local transformations, such as convolution or image filtering, consider individual pixels and their neighborhoods, allowing for detailed region-specific information. This distinction is important when analyzing images, as regions often hold critical information that can be overlooked with a global approach like the Fourier transform.",
+          "execution_time": 8.008222103118896,
+          "timeout": false,
+          "tokens": {
+            "input": 1020,
+            "output": 255,
+            "total": 1275,
+            "estimated": true
+          },
+          "cost": 0.000306,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.655,
+            "overall_accuracy": 0.655,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.655,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 38 edges in 0.000s\n\n============================================================\nRESPONSE\n============================================================\ncontent='Fourier transform is considered a global transformation because it analyzes and represents an entire signal or image in a single comprehensive output that encodes frequency information for all components of the input. This means that every point in the Fourier domain corresponds to a frequency that is derived from all pixels in the image, rather than focusing on individual or localized areas. \\n\\nThe problem this creates for image analysis is that it does not provide specific information about the spatial location of certain frequencies within the image. For instance, if a Fourier transform is applied to an image, it outputs a representation where the frequencies are averaged across the entire image. This makes it impossible to identify which specific pixels contribute to particular frequency components, leading to a loss of localized information. Consequently, analysts cannot discern where certain features, edges, or patterns are located in the image, which is often critical for tasks like object recognition or texture analysis.\\n\\nIn contrast, local transformations, such as convolution or image filtering, consider individual pixels and their neighborhoods, allowing for detailed region-specific information. This distinction is important when analyzing images, as regions often hold critical information that can be overlooked with a global approach like the Fourier transform.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 230, 'prompt_tokens': 2611, 'total_tokens': 2841, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wRJ9Y5B4k9U1ucxeEjoHr6PfGvC', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-b992-7642-891b-d9be9f0ad3ca-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 2611, 'output_tokens': 230, 'total_tokens': 2841, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['Applying Fourier transform', 'What is a filter?', 'Mathematical concepts in image processing', 'Discussion about magnitude and phase', 'Global transformation', 'Data position on the original image', 'Analyze local information', 'What does a filter do?', '\"I really want to know what are the frequencies present in the sky area of this image.\"', 'Global information']\n  RAG chunks used: 4 (from 4 candidates)\n  RAG tokens used: ~2443 / 121965 available\n  KG nodes used: 50\n  KG edges used: 38\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 5\n  \u2022 Page 2 (3451 chars) [RAG + 2 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [KG: 6 relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [KG: 6 relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 24 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 9,
+          "question": "How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?",
+          "difficulty": "hard",
+          "category": "synthesis_causality",
+          "expected_answer": "Gabor filters are created by multiplying a sine wave with a Gaussian kernel, which creates a wavelet (short wave) that only has values within a limited window. They provide two advantages: (1) localized frequencies - they tell you how much of a specific sine frequency is present at different locations in the image, and (2) localized orientations - the sine wave can be rotated to different angles.",
+          "response": "Gabor filters are created by taking a sine wave and applying a Gaussian kernel on top of it. Essentially, this involves multiplying a sine wave by a Gaussian function, which results in a \"squashed\" sine wave that is localized in both frequency and space. This creates a wavelet that allows for localized frequency analysis in an image.\\n\\nTwo key advantages of Gabor filters over the standard Fourier transform are:\\n\\n1. **Localized Frequency Analysis**: Gabor filters provide localized information about the frequencies present in specific parts of an image, while the Fourier transform is a global transformation that averages contributions from all pixels, making it difficult to discern specific details in particular regions.\\n\\n2. **Localized Orientation Detection**: Gabor filters can be oriented at different angles, allowing them to detect the orientation of features within an image. This capability enables more nuanced analyses of image textures and patterns compared to the standard Fourier transform, which does not offer such orientation-specific detail.",
+          "execution_time": 10.572834014892578,
+          "timeout": false,
+          "tokens": {
+            "input": 968,
+            "output": 242,
+            "total": 1210,
+            "estimated": true
+          },
+          "cost": 0.0002904,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.66,
+            "overall_accuracy": 0.66,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.66,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 40 nodes, 66 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent='Gabor filters are created by taking a sine wave and applying a Gaussian kernel on top of it. Essentially, this involves multiplying a sine wave by a Gaussian function, which results in a \"squashed\" sine wave that is localized in both frequency and space. This creates a wavelet that allows for localized frequency analysis in an image.\\n\\nTwo key advantages of Gabor filters over the standard Fourier transform are:\\n\\n1. **Localized Frequency Analysis**: Gabor filters provide localized information about the frequencies present in specific parts of an image, while the Fourier transform is a global transformation that averages contributions from all pixels, making it difficult to discern specific details in particular regions.\\n\\n2. **Localized Orientation Detection**: Gabor filters can be oriented at different angles, allowing them to detect the orientation of features within an image. This capability enables more nuanced analyses of image textures and patterns compared to the standard Fourier transform, which does not offer such orientation-specific detail.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 190, 'prompt_tokens': 1842, 'total_tokens': 2032, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_6b23b3aa8a', 'id': 'chatcmpl-D4wRUjsaYjVtSoVTBm5RqDvM3g0XC', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c2069-e49e-7362-a83e-8984d7d879f0-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 1842, 'output_tokens': 190, 'total_tokens': 2032, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['Fourier correspondence', 'Moving to the Fourier domain', 'Single point in Fourier domain', 'weighted combination of your images and those pixels', 'characteristic of Fourier transform', 'power minus two pi stuff', 'Every point in the Fourier domain', 'Fourier component', '\"Two points around the center in the Fourier transform\"', 'Result of Fourier transform']\n  RAG chunks used: 4 (from 4 candidates)\n  RAG tokens used: ~1533 / 121974 available\n  KG nodes used: 40\n  KG edges used: 66\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [RAG]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 10 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [KG: 26 relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [KG: 8 relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [KG: 10 relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 12 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 10,
+          "question": "Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.",
+          "difficulty": "hard",
+          "category": "synthesis_causality",
+          "expected_answer": "The Fourier transform formula uses e^(i*-2\u03c0*...) which is a complex number. According to Euler's formula, a complex number a+bi can be written as cos(\u03b8) + i*sin(\u03b8). Therefore, the e^(i*-2\u03c0*...) in the Fourier transform can be rewritten as cos(...) - i*sin(...). This is why Fourier transform creates linear combinations of sines and cosines (sinusoids) - it comes from the mathematical formulation using Euler's formula.",
+          "response": "Euler's formula plays a crucial role in the relationship between the Fourier transform and the approximation of signals using sinusoids. Euler's formula states that a complex number can be represented in terms of sine and cosine functions as follows:\\n\\n\\\\[ e^{i\\\\theta} = \\\\cos(\\\\theta) + i\\\\sin(\\\\theta) \\\\]\\n\\nThis relationship is foundational for understanding the Fourier transform because the transform operates by decomposing a signal into a linear combination of sinusoids (sines and cosines). \\n\\nWhen the Fourier transform is applied to a signal, it effectively converts the signal from its original time or image domain into the frequency domain (or Fourier domain). In this domain, each point corresponds to a frequency and is represented by a complex number that encompasses both a real part (associated with cosine) and an imaginary part (associated with sine). This means that each frequency component can be expressed as a combination of sine and cosine functions, reflecting how much of each sinusoid (i.e., each frequency) is present in the original signal.\\n\\nThe approximation of a signal using sinusoids arises from the ability to express any periodic function as a sum of these fundamental sine and cosine components due to the linearity of the Fourier transform. Essentially, the transformation reveals how a signal can be reconstructed from these sinusoids, with each sinusoid contributing to different frequency components of the signal.\\n\\nThus, the Fourier transform's use of Euler's formula to express complex numbers in terms of sines and cosines is key to understanding how it approximates signals through these waveforms, with the derived magnitude and phase providing the details about the contributions of each sinusoid in accurately reconstructing the original signal.",
+          "execution_time": 10.487794160842896,
+          "timeout": false,
+          "tokens": {
+            "input": 1120,
+            "output": 280,
+            "total": 1400,
+            "estimated": true
+          },
+          "cost": 0.000336,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.659,
+            "overall_accuracy": 0.659,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.659,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 66 edges in 0.001s\n\n============================================================\nRESPONSE\n============================================================\ncontent=\"Euler's formula plays a crucial role in the relationship between the Fourier transform and the approximation of signals using sinusoids. Euler's formula states that a complex number can be represented in terms of sine and cosine functions as follows:\\n\\n\\\\[ e^{i\\\\theta} = \\\\cos(\\\\theta) + i\\\\sin(\\\\theta) \\\\]\\n\\nThis relationship is foundational for understanding the Fourier transform because the transform operates by decomposing a signal into a linear combination of sinusoids (sines and cosines). \\n\\nWhen the Fourier transform is applied to a signal, it effectively converts the signal from its original time or image domain into the frequency domain (or Fourier domain). In this domain, each point corresponds to a frequency and is represented by a complex number that encompasses both a real part (associated with cosine) and an imaginary part (associated with sine). This means that each frequency component can be expressed as a combination of sine and cosine functions, reflecting how much of each sinusoid (i.e., each frequency) is present in the original signal.\\n\\nThe approximation of a signal using sinusoids arises from the ability to express any periodic function as a sum of these fundamental sine and cosine components due to the linearity of the Fourier transform. Essentially, the transformation reveals how a signal can be reconstructed from these sinusoids, with each sinusoid contributing to different frequency components of the signal.\\n\\nThus, the Fourier transform's use of Euler's formula to express complex numbers in terms of sines and cosines is key to understanding how it approximates signals through these waveforms, with the derived magnitude and phase providing the details about the contributions of each sinusoid in accurately reconstructing the original signal.\" additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 337, 'prompt_tokens': 3408, 'total_tokens': 3745, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_1590f93f9d', 'id': 'chatcmpl-D4wRcrRGAZaAIksF0WhiXDTpghWNQ', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c206a-0210-7603-9401-ab41cfdf7416-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 3408, 'output_tokens': 337, 'total_tokens': 3745, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['The Math', 'formula', 'further distance from the zero zero component', 'Every point in the Fourier domain', 'Number at every location in the frequency domain', 'characteristic of Fourier transform', '\"What is the distance between these points?\"', 'the same orientation', '\"Can we say something about the frequencies present?\"', 'Single point in Fourier domain']\n  RAG chunks used: 6 (from 6 candidates)\n  RAG tokens used: ~3331 / 121972 available\n  KG nodes used: 50\n  KG edges used: 66\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [KG: 2 relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [RAG + 8 KG relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [RAG + 12 KG relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [RAG + 22 KG relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [RAG + 6 KG relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [KG: 16 relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        },
+        {
+          "question_id": 11,
+          "question": "What programming language does the lecturer recommend for implementing Gabor filters?",
+          "difficulty": "unanswerable",
+          "category": "not_in_data",
+          "expected_answer": "This information is not provided in the text.",
+          "response": "The lecturer does not explicitly mention a specific programming language for implementing Gabor filters in the provided context. Therefore, based on the given excerpts, there is no information available regarding a recommended programming language.",
+          "execution_time": 3.347764015197754,
+          "timeout": false,
+          "tokens": {
+            "input": 806,
+            "output": 201,
+            "total": 1008,
+            "estimated": true
+          },
+          "cost": 0.0002415,
+          "accuracy_scores": {
+            "semantic_similarity": 0.0,
+            "word_overlap": 0.75,
+            "overall_accuracy": 0.75,
+            "honest_acknowledgment": false,
+            "method": "lexical"
+          },
+          "pass_fail": {
+            "passed": true,
+            "accuracy": 0.75,
+            "threshold": 0.3,
+            "status": "PASS"
+          },
+          "threshold_used": 0.75,
+          "attempts": 1,
+          "retry_triggered": false,
+          "error": null,
+          "full_output": "\n============================================================\nMULTI-PAGE QUERY MODE\n============================================================\nCollection: Input_MultiPage_Transcripts-Mathprez\nQuestion: What programming language does the lecturer recommend for implementing Gabor filters?\n============================================================\n\n[1/3] Loading hybrid RAG+KG system...\n[GraphStore] Loading from kg_store/Input_MultiPage_Transcripts-Mathprez/kg_store/Input_MultiPage_Transcripts-Mathprez.gml\n[GraphStore] Loaded 396 entities, 653 edges\n[GraphStore] Loaded resolver state: 396 canonical entities\n[HybridProcessor] Loaded existing hybrid system: Input_MultiPage_Transcripts-Mathprez\n[HybridProcessor] KG entities: 396\n\n[2/3] Querying hybrid system...\n[GraphStore] Extracted subgraph: 50 nodes, 24 edges in 0.000s\n\n============================================================\nRESPONSE\n============================================================\ncontent='The lecturer does not explicitly mention a specific programming language for implementing Gabor filters in the provided context. Therefore, based on the given excerpts, there is no information available regarding a recommended programming language.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 39, 'prompt_tokens': 1093, 'total_tokens': 1132, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_6b23b3aa8a', 'id': 'chatcmpl-D4wRmdjrB4RRaOxMdwEea7omZ12wk', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None} id='lc_run--019c206a-2ad3-78b3-a6ca-05c9c04cfddf-0' tool_calls=[] invalid_tool_calls=[] usage_metadata={'input_tokens': 1093, 'output_tokens': 39, 'total_tokens': 1132, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}}\n\n============================================================\nQUERY DETAILS\n============================================================\n  Query entities found: ['different point along the side', 'Reconstruction of the original signal', 'Coordinates of the Fourier transform', 'the same orientation', 'Quality of the signal', '\"Can we say something about the frequencies present?\"', 'LECTURE', '\"One second. The pointer refuses to cooperate.\"', 'The nature of filters', '\"A cross of dots from the two combined frequencies and their mirrored versions\"']\n  RAG chunks used: 2 (from 2 candidates)\n  RAG tokens used: ~751 / 121979 available\n  KG nodes used: 50\n  KG edges used: 24\n\n============================================================\nSOURCE PAGES\n============================================================\n  Referenced pages: 6\n  \u2022 Page 1 (3015 chars) [RAG + 2 KG relationships]: \"Introduction and Feedback Loop So before I start t...\"\n  \u2022 Page 2 (3451 chars) [KG: 8 relationships]: \"Fourier Transform Intuition and 2D Images You can ...\"\n  \u2022 Page 3 (3266 chars) [KG: 2 relationships]: \"The Math and Euler\u2019s Formula And now a bit of smar...\"\n  \u2022 Page 4 (3363 chars) [KG: 6 relationships]: \"Visualizing Domain and Magnitude vs. Phase Um, and...\"\n  \u2022 Page 5 (3346 chars) [KG: 4 relationships]: \"Calculating Magnitude, Phase, and Localization Um,...\"\n  \u2022 Page 6 (3119 chars) [RAG + 2 KG relationships]: \"Gabor Filters and Wavelets Looking at the Fourier ...\"\n\n============================================================\n\n\n/Users/plouismarie/Documents/apple2/s3usersKubev2/amaai/kg_rag_cli/lib/hybrid_processor.py:365: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.\n  vector_store = Chroma(\n"
+        }
+      ],
+      "pass_rate_summary": {
+        "total_questions": 10,
+        "passed_questions": 10,
+        "failed_questions": 0,
+        "pass_rate": 1.0,
+        "pass_rate_pct": "100.0%"
+      }
+    }
+  },
+  "comparison": {
+    "accuracy_comparison": [
+      {
+        "question_id": 2,
+        "question": "What is a filter according to the lecture?",
+        "single_file_accuracy": 0.476,
+        "multi_file_accuracy": 0.905,
+        "delta": -0.42900000000000005,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 3,
+        "question": "At what age did the lecturer start doing computer science?",
+        "single_file_accuracy": 0.0,
+        "multi_file_accuracy": 0.333,
+        "delta": -0.333,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 4,
+        "question": "What letters are used to represent coordinates in the Fourier domain instead of x and y?",
+        "single_file_accuracy": 0.333,
+        "multi_file_accuracy": 1.0,
+        "delta": -0.667,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 5,
+        "question": "What does the Fourier transform do to a signal, and how is it achieved?",
+        "single_file_accuracy": 0.706,
+        "multi_file_accuracy": 1.0,
+        "delta": -0.29400000000000004,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 6,
+        "question": "How do you compute the magnitude and phase of a Fourier transform?",
+        "single_file_accuracy": 0.19,
+        "multi_file_accuracy": 0.857,
+        "delta": -0.667,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 7,
+        "question": "In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?",
+        "single_file_accuracy": 0.226,
+        "multi_file_accuracy": 0.484,
+        "delta": -0.258,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 8,
+        "question": "Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.",
+        "single_file_accuracy": 0.291,
+        "multi_file_accuracy": 0.655,
+        "delta": -0.36400000000000005,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 9,
+        "question": "How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?",
+        "single_file_accuracy": 0.208,
+        "multi_file_accuracy": 0.66,
+        "delta": -0.45200000000000007,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 10,
+        "question": "Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.",
+        "single_file_accuracy": 0.318,
+        "multi_file_accuracy": 0.659,
+        "delta": -0.341,
+        "better_mode": "multi_file"
+      },
+      {
+        "question_id": 11,
+        "question": "What programming language does the lecturer recommend for implementing Gabor filters?",
+        "single_file_accuracy": 0.5,
+        "multi_file_accuracy": 0.75,
+        "delta": -0.25,
+        "better_mode": "multi_file"
+      }
+    ],
+    "execution_time_comparison": [
+      {
+        "question_id": 2,
+        "single_file_time": 2.247230052947998,
+        "multi_file_time": 4.922598838806152,
+        "delta": -2.6753687858581543,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 3,
+        "single_file_time": 2.039005994796753,
+        "multi_file_time": 3.4468581676483154,
+        "delta": -1.4078521728515625,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 4,
+        "single_file_time": 2.2616891860961914,
+        "multi_file_time": 4.5097620487213135,
+        "delta": -2.248072862625122,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 5,
+        "single_file_time": 3.0941200256347656,
+        "multi_file_time": 8.398700952529907,
+        "delta": -5.304580926895142,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 6,
+        "single_file_time": 3.5564091205596924,
+        "multi_file_time": 6.077646970748901,
+        "delta": -2.521237850189209,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 7,
+        "single_file_time": 2.279545307159424,
+        "multi_file_time": 8.05942702293396,
+        "delta": -5.779881715774536,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 8,
+        "single_file_time": 4.48557710647583,
+        "multi_file_time": 8.008222103118896,
+        "delta": -3.5226449966430664,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 9,
+        "single_file_time": 2.601569890975952,
+        "multi_file_time": 10.572834014892578,
+        "delta": -7.971264123916626,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 10,
+        "single_file_time": 4.529902935028076,
+        "multi_file_time": 10.487794160842896,
+        "delta": -5.957891225814819,
+        "faster_mode": "single_file"
+      },
+      {
+        "question_id": 11,
+        "single_file_time": 2.6696481704711914,
+        "multi_file_time": 3.347764015197754,
+        "delta": -0.6781158447265625,
+        "faster_mode": "single_file"
+      }
+    ],
+    "token_usage_comparison": [
+      {
+        "question_id": 2,
+        "single_file_tokens": 96,
+        "multi_file_tokens": 1056,
+        "delta": -960
+      },
+      {
+        "question_id": 3,
+        "single_file_tokens": 63,
+        "multi_file_tokens": 1010,
+        "delta": -947
+      },
+      {
+        "question_id": 4,
+        "single_file_tokens": 91,
+        "multi_file_tokens": 935,
+        "delta": -844
+      },
+      {
+        "question_id": 5,
+        "single_file_tokens": 166,
+        "multi_file_tokens": 1085,
+        "delta": -919
+      },
+      {
+        "question_id": 6,
+        "single_file_tokens": 99,
+        "multi_file_tokens": 1099,
+        "delta": -1000
+      },
+      {
+        "question_id": 7,
+        "single_file_tokens": 121,
+        "multi_file_tokens": 1115,
+        "delta": -994
+      },
+      {
+        "question_id": 8,
+        "single_file_tokens": 317,
+        "multi_file_tokens": 1275,
+        "delta": -958
+      },
+      {
+        "question_id": 9,
+        "single_file_tokens": 124,
+        "multi_file_tokens": 1210,
+        "delta": -1086
+      },
+      {
+        "question_id": 10,
+        "single_file_tokens": 285,
+        "multi_file_tokens": 1400,
+        "delta": -1115
+      },
+      {
+        "question_id": 11,
+        "single_file_tokens": 108,
+        "multi_file_tokens": 1008,
+        "delta": -900
+      }
+    ],
+    "cost_comparison": [
+      {
+        "question_id": 2,
+        "single_file_cost": 2.2800000000000002e-05,
+        "multi_file_cost": 0.0002532,
+        "delta": -0.00023039999999999996
+      },
+      {
+        "question_id": 3,
+        "single_file_cost": 1.47e-05,
+        "multi_file_cost": 0.00024239999999999998,
+        "delta": -0.00022769999999999998
+      },
+      {
+        "question_id": 4,
+        "single_file_cost": 2.16e-05,
+        "multi_file_cost": 0.00022439999999999998,
+        "delta": -0.00020279999999999997
+      },
+      {
+        "question_id": 5,
+        "single_file_cost": 3.96e-05,
+        "multi_file_cost": 0.0002604,
+        "delta": -0.0002208
+      },
+      {
+        "question_id": 6,
+        "single_file_cost": 2.325e-05,
+        "multi_file_cost": 0.00026325000000000003,
+        "delta": -0.00024000000000000003
+      },
+      {
+        "question_id": 7,
+        "single_file_cost": 2.88e-05,
+        "multi_file_cost": 0.0002676,
+        "delta": -0.0002388
+      },
+      {
+        "question_id": 8,
+        "single_file_cost": 7.575e-05,
+        "multi_file_cost": 0.000306,
+        "delta": -0.00023025
+      },
+      {
+        "question_id": 9,
+        "single_file_cost": 2.925e-05,
+        "multi_file_cost": 0.0002904,
+        "delta": -0.00026115000000000003
+      },
+      {
+        "question_id": 10,
+        "single_file_cost": 6.84e-05,
+        "multi_file_cost": 0.000336,
+        "delta": -0.0002676
+      },
+      {
+        "question_id": 11,
+        "single_file_cost": 2.55e-05,
+        "multi_file_cost": 0.0002415,
+        "delta": -0.000216
+      }
+    ],
+    "summary": {
+      "avg_accuracy_diff": -0.405,
+      "avg_time_diff": -3.81,
+      "total_cost_diff": -0.0023,
+      "single_file_wins": 0,
+      "multi_file_wins": 10,
+      "ties": 0,
+      "better_mode_overall": "multi_file"
+    }
+  }
+}

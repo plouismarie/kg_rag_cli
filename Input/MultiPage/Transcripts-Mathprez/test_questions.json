@@ -1,0 +1,106 @@
+{
+  "test_questions": [
+    {
+      "id": 1,
+      "difficulty": "very_easy",
+      "category": "functionality_check",
+      "question": "What is the main topic of this lecture?",
+      "expected_answer": "Gabor filters",
+      "notes": "Simple factual recall to confirm query functionality"
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "What is a filter according to the lecture?",
+      "expected_answer": "A filter is a matrix of numbers, typically used in operations such as convolution or correlation. It's also synonymous with kernel.",
+      "notes": "Direct definition from the text"
+    },
+    {
+      "id": 3,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "At what age did the lecturer start doing computer science?",
+      "expected_answer": "14 years old",
+      "notes": "Simple biographical fact from the introduction"
+    },
+    {
+      "id": 4,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "What letters are used to represent coordinates in the Fourier domain instead of x and y?",
+      "expected_answer": "u and v",
+      "notes": "Simple terminology recall"
+    },
+    {
+      "id": 5,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "What does the Fourier transform do to a signal, and how is it achieved?",
+      "expected_answer": "Fourier transform decomposes a signal into its component frequencies by approximating the signal with a linear combination of sinusoids.",
+      "notes": "Requires connecting the concept with its mechanism"
+    },
+    {
+      "id": 6,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "How do you compute the magnitude and phase of a Fourier transform?",
+      "expected_answer": "Magnitude is computed as the square root of the real part squared plus the imaginary part squared (absolute value of the complex number). Phase is computed as the arctangent of the imaginary part divided by the real part.",
+      "notes": "Requires recalling two related mathematical formulas"
+    },
+    {
+      "id": 7,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "In the Fourier domain visualization, why are some frequency points further from the zero-zero component than others?",
+      "expected_answer": "Points further from the zero-zero component represent higher frequencies. High frequency means the pattern changes very fast (like from black to white and back quickly), while low frequency means it changes slowly. Distance from center indicates frequency magnitude.",
+      "notes": "Requires understanding the spatial relationship to frequency"
+    },
+    {
+      "id": 8,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "Explain why Fourier transform is considered a global transformation rather than a local one, and what problem this creates for image analysis.",
+      "expected_answer": "Fourier transform is global because every point in the Fourier domain is computed as a sum over all pixels in the image - all pixels contribute to a single frequency point. This means you cannot determine where specific frequencies are located in the image (e.g., you can't identify frequencies present only in the sky region). This is problematic when working with images because we typically want to analyze local regions, not just global frequency content.",
+      "notes": "Requires synthesizing multiple concepts and understanding limitations"
+    },
+    {
+      "id": 9,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "How are Gabor filters created, and what two key advantages do they provide over standard Fourier transform?",
+      "expected_answer": "Gabor filters are created by multiplying a sine wave with a Gaussian kernel, which creates a wavelet (short wave) that only has values within a limited window. They provide two advantages: (1) localized frequencies - they tell you how much of a specific sine frequency is present at different locations in the image, and (2) localized orientations - the sine wave can be rotated to different angles.",
+      "notes": "Requires understanding the construction method and connecting it to functional advantages"
+    },
+    {
+      "id": 10,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "Explain the relationship between Euler's formula and why Fourier transform approximates signals using sinusoids.",
+      "expected_answer": "The Fourier transform formula uses e^(i*-2π*...) which is a complex number. According to Euler's formula, a complex number a+bi can be written as cos(θ) + i*sin(θ). Therefore, the e^(i*-2π*...) in the Fourier transform can be rewritten as cos(...) - i*sin(...). This is why Fourier transform creates linear combinations of sines and cosines (sinusoids) - it comes from the mathematical formulation using Euler's formula.",
+      "notes": "Requires connecting mathematical formulation to intuitive understanding across multiple pages"
+    },
+    {
+      "id": 11,
+      "difficulty": "unanswerable",
+      "category": "not_in_data",
+      "question": "What programming language does the lecturer recommend for implementing Gabor filters?",
+      "expected_answer": "This information is not provided in the text.",
+      "notes": "Tests how the RAG system handles questions about implementation details not covered in the lecture"
+    }
+  ],
+  "metadata": {
+    "source_directory": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/kg_rag_cli/Input/MultiPage/Transcripts-Mathprez",
+    "total_questions": 11,
+    "difficulty_distribution": {
+      "very_easy": 1,
+      "easy": 3,
+      "medium": 3,
+      "hard": 3,
+      "unanswerable": 1
+    },
+    "purpose": "Testing RAG systems: kg_rag_cli, vt_rag_cli, ag_rag_cli, rlm_rag_cli",
+    "content_theme": "Academic lecture transcript - Gabor filters, Fourier transforms, and image processing",
+    "content_type": "Spoken lecture transcript with interactive Q&A elements"
+  }
+}

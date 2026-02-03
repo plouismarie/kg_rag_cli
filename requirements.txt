@@ -1,0 +1,59 @@
+## Requirements for kg_rag_cli.py
+# Knowledge Graph RAG Command-Line Interface
+#
+# Install: pip install -r requirements.txt
+
+# =============================================================================
+# Core LangChain packages
+# =============================================================================
+
+# LangChain community integrations (NetworkxEntityGraph, TextLoader, Chroma)
+langchain-community>=0.3.0
+
+# LangChain core utilities
+langchain-core>=0.3.0
+
+# LangChain text splitters (for chunking documents)
+langchain-text-splitters>=0.3.0
+
+# OpenAI integration for ChatOpenAI
+langchain-openai>=0.2.0
+
+# =============================================================================
+# OpenAI API client
+# =============================================================================
+
+openai>=1.0.0
+
+# =============================================================================
+# Graph libraries
+# =============================================================================
+
+# NetworkX for graph data structures and GML file persistence
+networkx>=3.0
+
+# PyVis for interactive HTML graph visualization
+pyvis>=0.3.0
+
+# =============================================================================
+# HTTP client (used by openai package)
+# =============================================================================
+
+httpx>=0.25.0
+
+# =============================================================================
+# Vector store for multi-page RAG (NEW)
+# =============================================================================
+
+# Chroma vector database for semantic search
+chromadb>=0.4.0
+
+# Sentence transformers for embeddings (optional - can use OpenAI instead)
+# sentence-transformers>=2.2.0
+
+# =============================================================================
+# 3D Visualization (for multi-page graphs)
+# =============================================================================
+
+# Plotly for 3D interactive visualization
+plotly>=5.0.0
