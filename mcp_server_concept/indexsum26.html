@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre Grand Été 2026 ☀️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:#FFF8F0;color:#1A1A2E;overflow-x:hidden}
+:root{
+  --coral:#FF6B35;--blue:#004E89;--yellow:#FFD166;
+  --cream:#FFF8F0;--olive:#6B9E78;--dark:#1A1A2E;
+  --sand:#F5E6D3;--light-coral:#FFF0EB;
+}
+
+/* ── Progress bar ── */
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--coral),var(--yellow));width:0%;z-index:1000;border-radius:0 2px 2px 0;transition:width .1s linear}
+
+/* ── Nav dots ── */
+#nav-dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:999}
+.nav-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,107,53,.25);cursor:pointer;transition:all .3s;border:2px solid var(--coral)}
+.nav-dot.active,.nav-dot:hover{background:var(--coral);transform:scale(1.4)}
+
+/* ── Confetti layer ── */
+#confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+
+/* ── Scroll animations ── */
+.fade-in{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-left{opacity:0;transform:translateX(-40px);transition:opacity .65s ease,transform .65s ease}
+.fade-left.visible{opacity:1;transform:translateX(0)}
+
+/* ══════════ HERO ══════════ */
+#hero{min-height:100vh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(180deg,#4fc3f7 0%,#ff9800 55%,#ff5722 100%)}
+.hero-bg{position:absolute;inset:0;background:url('./images/hero.jpg') center/cover no-repeat;opacity:.88}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.42) 100%)}
+.sun{position:absolute;top:14%;right:13%;width:76px;height:76px;background:var(--yellow);border-radius:50%;box-shadow:0 0 0 12px rgba(255,209,102,.25),0 0 60px rgba(255,209,102,.6);animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite;z-index:3}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 12px rgba(255,209,102,.25),0 0 60px rgba(255,209,102,.5)}50%{box-shadow:0 0 0 20px rgba(255,209,102,.3),0 0 100px rgba(255,209,102,.8)}}
+
+/* Birds */
+.birds{position:absolute;top:22%;left:12%;z-index:3;font-size:1.4rem;animation:birdFly 8s ease-in-out infinite;opacity:.85}
+@keyframes birdFly{0%,100%{transform:translate(0,0)}25%{transform:translate(20px,-10px)}75%{transform:translate(-15px,8px)}}
+
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;padding:2rem 1.5rem}
+.hero-eyebrow{font-size:.95rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;opacity:.9;margin-bottom:.75rem}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(3rem,9vw,6.5rem);line-height:1.05;text-shadow:2px 4px 16px rgba(0,0,0,.35);margin-bottom:.75rem}
+.hero-tagline{font-size:clamp(1rem,2.5vw,1.25rem);font-style:italic;opacity:.95;max-width:520px;margin:0 auto 2.5rem;line-height:1.6}
+.stats-row{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.stat-item{background:rgba(255,255,255,.18);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.35);border-radius:18px;padding:1rem 1.5rem;text-align:center}
+.stat-num{font-family:'Fredoka One',cursive;font-size:2.6rem;display:block;line-height:1}
+.stat-lbl{font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.88}
+.scroll-cta{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;opacity:.8;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;animation:bounce 2s ease-in-out infinite;font-size:.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.scroll-cta span{font-size:1.8rem}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* Waves bottom of hero */
+.hero-waves{position:absolute;bottom:-2px;left:0;width:100%;z-index:2;line-height:0}
+.hero-waves svg{display:block;width:100%}
+
+/* ══════════ SHARED SECTION STYLES ══════════ */
+.section-pad{padding:5rem 2rem}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header .sec-emoji{font-size:2.5rem;display:block;margin-bottom:.5rem}
+.section-header h2{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,5vw,3.2rem);color:var(--dark);margin-bottom:.5rem}
+.section-header p{font-size:1.05rem;color:#777;max-width:480px;margin:0 auto}
+
+/* Route ribbon */
+.route-ribbon{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;background:white;border-radius:50px;padding:.6rem 1.5rem;max-width:600px;margin:0 auto 3rem;box-shadow:0 2px 16px rgba(0,0,0,.08);font-size:.85rem;font-weight:700;color:#555}
+.route-stop{background:var(--light-coral);color:var(--coral);border-radius:50px;padding:.3rem .9rem;font-size:.82rem;font-weight:800}
+.route-arrow{color:#bbb;font-size:1rem}
+
+/* ══════════ QUI VIENT ══════════ */
+#qui-vient{background:var(--cream)}
+.people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:1.25rem;max-width:900px;margin:0 auto}
+.person-card{background:#fff;border-radius:20px;padding:1.5rem 1rem;text-align:center;box-shadow:0 3px 16px rgba(0,0,0,.07);cursor:default;transition:transform .3s,box-shadow .3s,border-color .3s;border:2px solid transparent}
+.person-card:hover{transform:translateY(-8px);box-shadow:0 12px 36px rgba(255,107,53,.18);border-color:var(--coral)}
+.person-card .av{font-size:2.8rem;display:block;margin-bottom:.6rem;transition:transform .3s}
+.person-card:hover .av{transform:rotate(-12deg) scale(1.2)}
+.person-card .pname{font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--dark);margin-bottom:.2rem}
+.person-card .prole{font-size:.75rem;color:#999;font-weight:700}
+.person-card.paris{background:linear-gradient(135deg,#e8f4fd,#dceefb)}
+.person-card.bday{background:linear-gradient(135deg,#fff8e1,#fff3cd)}
+
+/* ══════════ PROGRAMME ══════════ */
+#programme{background:var(--sand)}
+.timeline{max-width:780px;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;left:38px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--coral) 0%,var(--yellow) 50%,var(--blue) 100%);border-radius:2px}
+.tl-item{position:relative;padding-left:85px;margin-bottom:1.25rem}
+.tl-dot{position:absolute;left:26px;top:20px;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--coral);box-shadow:0 0 0 3px var(--coral);z-index:1;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:transform .3s}
+.tl-item:hover .tl-dot{transform:scale(1.2)}
+.tl-head{background:#fff;border-radius:16px;padding:1.1rem 1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;border:2px solid transparent}
+.tl-head:hover{border-color:rgba(255,107,53,.4);box-shadow:0 4px 20px rgba(255,107,53,.12)}
+.tl-head.open{border-color:var(--coral);border-radius:16px 16px 0 0;background:linear-gradient(135deg,#fff,#fff8f5)}
+.tl-head-left{display:flex;align-items:center;gap:.9rem}
+.tl-ico{font-size:1.9rem;flex-shrink:0}
+.tl-date{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--coral);margin-bottom:.15rem}
+.tl-title{font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--dark);line-height:1.2}
+.tl-sub{font-size:.8rem;color:#aaa;margin-top:.1rem}
+.tl-toggle{font-size:1.4rem;font-weight:800;color:var(--coral);transition:transform .35s;line-height:1;flex-shrink:0}
+.tl-head.open .tl-toggle{transform:rotate(45deg)}
+.tl-body{background:#fff;border:2px solid var(--coral);border-top:none;border-radius:0 0 16px 16px;max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s}
+.tl-body.open{max-height:680px;padding:1.4rem}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.info-blk{background:var(--cream);border-radius:12px;padding:.9rem 1rem}
+.info-blk h4{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--coral);font-weight:800;margin-bottom:.4rem}
+.info-blk p{font-size:.88rem;line-height:1.55;color:var(--dark);font-weight:600}
+.full{grid-column:1/-1}
+.note{background:linear-gradient(135deg,#fff9e6,#fff3cd);border-radius:10px;padding:.7rem 1rem;font-size:.83rem;font-weight:700;color:#7d5a00;display:flex;align-items:flex-start;gap:.5rem;grid-column:1/-1}
+.airbnb-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--coral);color:#fff;text-decoration:none;padding:.7rem 1.5rem;border-radius:50px;font-weight:800;font-size:.88rem;transition:all .3s;margin-top:.3rem}
+.airbnb-btn:hover{background:#e5551e;transform:translateY(-2px);box-shadow:0 6px 18px rgba(255,107,53,.4)}
+.tl-img{width:100%;height:170px;object-fit:cover;border-radius:10px;margin-bottom:.2rem}
+
+/* ══════════ ANNIVERSAIRE ══════════ */
+#anniversaire{background:linear-gradient(135deg,#fff8e1,#ffe0b2,#ffccbc);text-align:center;padding:5rem 2rem;overflow:hidden;position:relative}
+.bday-card{background:#fff;border-radius:26px;padding:2.5rem 2rem;max-width:580px;margin:0 auto;box-shadow:0 8px 40px rgba(255,107,53,.18);cursor:pointer;transition:transform .3s;position:relative;overflow:hidden}
+.bday-card:hover{transform:scale(1.02)}
+.bday-card::before{content:'🎈';position:absolute;top:-10px;right:20px;font-size:3rem;animation:float 3s ease-in-out infinite}
+.bday-card::after{content:'🎈';position:absolute;top:-10px;left:20px;font-size:2.5rem;animation:float 3.5s ease-in-out infinite .5s}
+.bday-img{width:100%;max-width:400px;border-radius:16px;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.bday-card h2{font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--coral);margin-bottom:.75rem}
+.bday-card p{font-size:1rem;color:#666;line-height:1.6;margin-bottom:.75rem}
+.bday-hint{font-size:.82rem;color:#bbb;font-style:italic;margin-top:.5rem}
+
+/* ══════════ ATHÈNES ══════════ */
+#athenes{min-height:70vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.athens-bg{position:absolute;inset:0;background:url('./images/athens.jpg') center/cover no-repeat}
+.athens-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,20,70,.25) 0%,rgba(0,20,70,.72) 100%)}
+.athens-content{position:relative;z-index:2;text-align:center;color:#fff;padding:3rem 2rem;max-width:680px}
+.athens-content h2{font-family:'Fredoka One',cursive;font-size:clamp(2.4rem,6vw,4rem);text-shadow:2px 4px 16px rgba(0,0,0,.35);margin-bottom:1rem}
+.athens-content p{font-size:1.05rem;line-height:1.7;opacity:.95;margin-bottom:1.5rem}
+.flight-card{background:rgba(255,255,255,.15);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:0 auto 1rem;max-width:460px}
+.f-city .f-code{font-family:'Fredoka One',cursive;font-size:2rem}
+.f-city .f-name{font-size:.78rem;opacity:.8;text-align:center}
+.f-arrow{font-size:2rem;animation:fly 2s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+.flight-meta{font-size:.82rem;opacity:.75}
+
+/* Hotel block */
+.hotel-card{display:inline-flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:1rem 1.5rem;margin-top:.5rem;font-size:.85rem;line-height:1.6;backdrop-filter:blur(8px)}
+.hotel-card strong{font-size:1rem}
+
+/* ══════════ FOOTER ══════════ */
+footer{background:var(--dark);color:#fff;text-align:center;padding:3rem 2rem}
+footer h3{font-family:'Fredoka One',cursive;font-size:1.9rem;background:linear-gradient(90deg,var(--coral),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+footer p{opacity:.55;font-size:.9rem;margin-top:.4rem}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:768px){
+  #nav-dots{display:none}
+  .timeline::before{left:18px}
+  .tl-item{padding-left:52px}
+  .tl-dot{left:6px;top:18px;width:22px;height:22px}
+  .tl-grid{grid-template-columns:1fr}
+  .stats-row{gap:1rem}
+  .stat-item{padding:.75rem 1rem}
+  .people-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem}
+  .route-ribbon{font-size:.78rem;gap:.3rem}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<nav id="nav-dots">
+  <div class="nav-dot active" data-s="hero"        onclick="goTo('hero')"        title="Accueil"></div>
+  <div class="nav-dot"        data-s="qui-vient"   onclick="goTo('qui-vient')"   title="Qui vient ?"></div>
+  <div class="nav-dot"        data-s="programme"   onclick="goTo('programme')"   title="Programme"></div>
+  <div class="nav-dot"        data-s="anniversaire"onclick="goTo('anniversaire')"title="Anniversaire"></div>
+  <div class="nav-dot"        data-s="athenes"     onclick="goTo('athenes')"     title="Athènes"></div>
+</nav>
+<div id="confetti-container"></div>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="sun"></div>
+  <div class="birds">🕊️ 🕊️</div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">☀️ Été 2026 ☀️</p>
+    <h1 class="hero-title">Notre Grand<br>Été 2026</h1>
+    <p class="hero-tagline">Mer turquoise, châteaux de légende<br>et oliviers dorés… Le sud de la France nous attend ! 🌿</p>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num" data-target="20">0</span>
+        <span class="stat-lbl">Jours</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="4">0</span>
+        <span class="stat-lbl">Destinations</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="8">0</span>
+        <span class="stat-lbl">Aventuriers</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="rgba(255,248,240,0.7)">
+        <animate attributeName="d" dur="8s" repeatCount="indefinite"
+          values="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z;
+                  M0,30 C240,10 480,60 720,30 C960,0 1200,60 1440,30 L1440,80 L0,80 Z;
+                  M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"/>
+      </path>
+      <path d="M0,55 C360,20 720,70 1080,40 C1260,25 1380,55 1440,55 L1440,80 L0,80 Z" fill="#FFF8F0">
+        <animate attributeName="d" dur="6s" repeatCount="indefinite"
+          values="M0,55 C360,20 720,70 1080,40 C1260,25 1380,55 1440,55 L1440,80 L0,80 Z;
+                  M0,45 C360,65 720,35 1080,55 C1260,70 1380,40 1440,50 L1440,80 L0,80 Z;
+                  M0,55 C360,20 720,70 1080,40 C1260,25 1380,55 1440,55 L1440,80 L0,80 Z"/>
+      </path>
+    </svg>
+  </div>
+
+  <div class="scroll-cta" onclick="goTo('qui-vient')">
+    Découvrir<span>↓</span>
+  </div>
+</section>
+
+<!-- ══════════════════════ QUI VIENT ══════════════════════ -->
+<section id="qui-vient" class="section-pad">
+  <div class="section-header fade-in">
+    <span class="sec-emoji">👨‍👩‍👧‍👦</span>
+    <h2>Qui vient ?</h2>
+    <p>Une belle bande de joyeux aventuriers pour un été inoubliable !</p>
+  </div>
+
+  <div class="people-grid">
+    <div class="person-card fade-in" style="transition-delay:.05s">
+      <span class="av">🧔</span>
+      <div class="pname">Pascal</div>
+      <div class="prole">L'organisateur en chef ✨</div>
+    </div>
+    <div class="person-card fade-in" style="transition-delay:.1s">
+      <span class="av">💃</span>
+      <div class="pname">Gwladys</div>
+      <div class="prole">La femme de Pascal</div>
+    </div>
+    <div class="person-card fade-in" style="transition-delay:.15s">
+      <span class="av">👧</span>
+      <div class="pname">Orlann</div>
+      <div class="prole">Grande sœur</div>
+    </div>
+    <div class="person-card fade-in" style="transition-delay:.2s">
+      <span class="av">🧒</span>
+      <div class="pname">Warren</div>
+      <div class="prole">Grand frère</div>
+    </div>
+    <div class="person-card bday fade-in" style="transition-delay:.25s">
+      <span class="av">🎂</span>
+      <div class="pname">Rubenn</div>
+      <div class="prole">Petit frère • 7 ans le 26 juillet !</div>
+    </div>
+    <div class="person-card paris fade-in" style="transition-delay:.3s">
+      <span class="av">👩‍🦱</span>
+      <div class="pname">Sonia</div>
+      <div class="prole">Maman de Gwladys • Paris 🗼</div>
+    </div>
+    <div class="person-card paris fade-in" style="transition-delay:.35s">
+      <span class="av">🌸</span>
+      <div class="pname">Audrey</div>
+      <div class="prole">Sœur de Gwladys • Paris 🗼</div>
+    </div>
+    <div class="person-card fade-in" style="transition-delay:.4s">
+      <span class="av">🚗</span>
+      <div class="pname">Emmanuelle</div>
+      <div class="prole">Amie de la famille</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PROGRAMME ══════════════════════ -->
+<section id="programme" class="section-pad">
+  <div class="section-header fade-in">
+    <span class="sec-emoji">🗺️</span>
+    <h2>Le Programme</h2>
+    <p>Clique sur chaque étape pour découvrir tous les détails !</p>
+  </div>
+
+  <div class="route-ribbon fade-in">
+    <span class="route-stop">🚂 Paris</span>
+    <span class="route-arrow">→</span>
+    <span class="route-stop">🌊 Sète</span>
+    <span class="route-arrow">→</span>
+    <span class="route-stop">🏰 Carcassonne</span>
+    <span class="route-arrow">→</span>
+    <span class="route-stop">🍷 Bordeaux</span>
+    <span class="route-arrow">→</span>
+    <span class="route-stop">✈️ Athènes</span>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 1 · Train -->
+    <div class="tl-item fade-left" style="transition-delay:.05s">
+      <div class="tl-dot">🚂</div>
+      <div class="tl-head" onclick="toggleTl(this)">
+        <div class="tl-head-left">
+          <div class="tl-ico">🚂</div>
+          <div>
+            <div class="tl-date">12 Juillet</div>
+            <div class="tl-title">En route pour Sète !</div>
+            <div class="tl-sub">Train direct Paris → Sète</div>
+          </div>
+        </div>
+        <div class="tl-toggle">+</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-grid">
+          <div class="info-blk full">
+            <h4>🚉 Le grand départ</h4>
+            <p>Sonia, Audrey et toute la famille embarquent dans le train direct depuis Paris vers Sète, la perle de la Méditerranée. L'aventure commence !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · Sète -->
+    <div class="tl-item fade-left" style="transition-delay:.12s">
+      <div class="tl-dot">🌊</div>
+      <div class="tl-head" onclick="toggleTl(this)">
+        <div class="tl-head-left">
+          <div class="tl-ico">🌊</div>
+          <div>
+            <div class="tl-date">12 – 22 Juillet · 10 nuits</div>
+            <div class="tl-title">Sète, la Venise du Languedoc</div>
+            <div class="tl-sub">Mer turquoise, marchés colorés, dolce vita</div>
+          </div>
+        </div>
+        <div class="tl-toggle">+</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-grid">
+          <img src="./images/sete.jpg" alt="Sète" class="tl-img full" onerror="this.style.display='none'">
+          <div class="info-blk">
+            <h4>📍 Adresse</h4>
+            <p>24 Rue de la Tartane<br>Sète, Occitanie 34200</p>
+          </div>
+          <div class="info-blk">
+            <h4>🕐 Horaires</h4>
+            <p>Arrivée : 17h00<br>Départ : 11h00</p>
+          </div>
+          <div class="note">🧔 <span>Pascal arrive le <strong>19 juillet</strong> après son séminaire près de Perpignan</span></div>
+          <div class="note">🚗 <span>Emmanuelle nous rejoint directement à Sète avec son propre véhicule !</span></div>
+          <div class="info-blk full" style="text-align:center">
+            <a href="https://www.airbnb.com/rooms/34748278" target="_blank" class="airbnb-btn">🏠 Voir le logement Airbnb</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 · Carcassonne -->
+    <div class="tl-item fade-left" style="transition-delay:.19s">
+      <div class="tl-dot">🏰</div>
+      <div class="tl-head" onclick="toggleTl(this)">
+        <div class="tl-head-left">
+          <div class="tl-ico">🏰</div>
+          <div>
+            <div class="tl-date">22 – 23 Juillet · 1 nuit</div>
+            <div class="tl-title">Carcassonne, la Cité Médiévale</div>
+            <div class="tl-sub">En voiture de location · Magie et histoire</div>
+          </div>
+        </div>
+        <div class="tl-toggle">+</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-grid">
+          <img src="./images/carcassonne.jpg" alt="Carcassonne" class="tl-img full" onerror="this.style.display='none'">
+          <div class="info-blk">
+            <h4>📍 Adresse</h4>
+            <p>28 Rue Longue<br>11000 Carcassonne</p>
+          </div>
+          <div class="info-blk">
+            <h4>🕐 Horaires</h4>
+            <p>Arrivée : 16h00<br>Départ : 10h00</p>
+          </div>
+          <div class="info-blk full" style="text-align:center">
+            <a href="https://www.airbnb.com/rooms/1299296661209392955" target="_blank" class="airbnb-btn">🏠 Voir le logement Airbnb</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 · Bordeaux -->
+    <div class="tl-item fade-left" style="transition-delay:.26s">
+      <div class="tl-dot">🍷</div>
+      <div class="tl-head" onclick="toggleTl(this)">
+        <div class="tl-head-left">
+          <div class="tl-ico">🍷</div>
+          <div>
+            <div class="tl-date">23 – 27 Juillet · 4 nuits</div>
+            <div class="tl-title">Bordeaux, la Belle Endormie</div>
+            <div class="tl-sub">En voiture · Vins, architecture, art de vivre</div>
+          </div>
+        </div>
+        <div class="tl-toggle">+</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-grid">
+          <img src="./images/bordeaux.jpg" alt="Bordeaux" class="tl-img full" onerror="this.style.display='none'">
+          <div class="info-blk">
+            <h4>📍 Adresse</h4>
+            <p>33 Rue Boris Vian<br>Bordeaux</p>
+          </div>
+          <div class="info-blk">
+            <h4>🕐 Horaires</h4>
+            <p>Arrivée : 16h00<br>Départ : 10h00</p>
+          </div>
+          <div class="note">🎂 <span>Le <strong>26 juillet</strong> : grand déjeuner d'anniversaire pour les 7 ans de Rubenn !</span></div>
+          <div class="note">🚆 <span>Sonia &amp; Audrey reprennent le train vers Paris le <strong>26 juillet à 16h00</strong> — merci d'avoir été là ! 💛</span></div>
+          <div class="info-blk full">
+            <h4>🤝 Nos amis bordelais</h4>
+            <p>On ira rendre visite à <strong>Mickaël</strong> (notre ami bordelais), sa femme <strong>Delphine</strong> et leur fille <strong>Léane</strong> — un beau moment en famille et entre amis ! 🥂</p>
+          </div>
+          <div class="info-blk full">
+            <h4>ℹ️ Bon à savoir</h4>
+            <p>Draps et serviettes fournis — tout est prévu pour votre confort !</p>
+          </div>
+          <div class="info-blk full" style="text-align:center">
+            <a href="https://www.airbnb.com/rooms/1295494378279635188" target="_blank" class="airbnb-btn">🏠 Voir le logement Airbnb</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 · Athènes -->
+    <div class="tl-item fade-left" style="transition-delay:.33s">
+      <div class="tl-dot">✈️</div>
+      <div class="tl-head" onclick="toggleTl(this)">
+        <div class="tl-head-left">
+          <div class="tl-ico">✈️</div>
+          <div>
+            <div class="tl-date">27 Juillet</div>
+            <div class="tl-title">Envol vers Athènes !</div>
+            <div class="tl-sub">Pascal, Gwladys & les enfants · Aegean Airlines</div>
+          </div>
+        </div>
+        <div class="tl-toggle">+</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-grid">
+          <div class="info-blk">
+            <h4>✈️ Vol</h4>
+            <p>Aegean Airlines A3 697<br>17h30 Bordeaux (BOD)<br>21h35 Athènes (ATH)<br>Vol direct · 3h05</p>
+          </div>
+          <div class="info-blk">
+            <h4>🏨 Hébergement</h4>
+            <p>Oreades Parthenon Suites<br>Drakou 2, 1er étage<br>Athens, 11742</p>
+          </div>
+          <div class="info-blk">
+            <h4>🔑 Accès</h4>
+            <p>Clés dans le boîtier sur place<br>📞 +30 2634 027678<br>Réf : 5752552745</p>
+          </div>
+          <div class="info-blk">
+            <h4>📅 Séjour</h4>
+            <p>Arrivée : 27 juil. dès 15h00<br>Départ : 1er août avant 11h<br>5 nuits</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+</section>
+
+<!-- ══════════════════════ ANNIVERSAIRE ══════════════════════ -->
+<section id="anniversaire">
+  <div class="section-header fade-in" style="padding-top:5rem;padding-left:2rem;padding-right:2rem">
+    <span class="sec-emoji">🎉</span>
+    <h2>Joyeux Anniversaire Rubenn !</h2>
+    <p>26 juillet à Bordeaux · Un déjeuner plein d'amour</p>
+  </div>
+
+  <div style="padding:0 2rem 5rem">
+    <div class="bday-card fade-in" onclick="launchConfetti()">
+      <img src="./images/birthday.jpg" alt="Anniversaire" class="bday-img" onerror="this.style.display='none'">
+      <h2>Rubenn fête ses 7 ans ! 🎈</h2>
+      <p>Le <strong>26 juillet à Bordeaux</strong>, toute la famille se réunit autour d'un déjeuner d'anniversaire bien mérité. Rubenn, tu seras entouré de tout l'amour du monde ! 💛</p>
+      <p>Emmanuelle sera là aussi pour partager ce beau moment avant que Sonia et Audrey reprennent la route vers Paris cet après-midi.</p>
+      <p class="bday-hint">👆 Clique ici pour une petite surprise !</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ ATHÈNES ══════════════════════ -->
+<section id="athenes">
+  <div class="athens-bg"></div>
+  <div class="athens-overlay"></div>
+  <div class="athens-content fade-in">
+    <span style="font-size:3rem;display:block;margin-bottom:.75rem">🏛️</span>
+    <h2>Et cap sur Athènes !</h2>
+    <p>Pascal, Gwladys, Orlann, Warren et Rubenn s'envolent vers la Grèce pour 5 jours de pur émerveillement. L'Acropole, les ruelles blanches, l'histoire millénaire… Une dernière page dorée de cet été extraordinaire !</p>
+
+    <div class="flight-card">
+      <div class="f-city">
+        <div class="f-code">BOD</div>
+        <div class="f-name">Bordeaux · 17h30</div>
+      </div>
+      <div class="f-arrow">✈️</div>
+      <div class="f-city">
+        <div class="f-code">ATH</div>
+        <div class="f-name">Athènes · 21h35</div>
+      </div>
+    </div>
+    <p class="flight-meta">Aegean Airlines A3 697 · Vol direct · 3h05 · 27 juillet 2026</p>
+
+    <div class="hotel-card" style="margin-top:1.2rem">
+      <strong>🏨 Oreades Parthenon Suites</strong>
+      <span>Drakou 2 · Athens · 27 juil – 1er août · 5 nuits</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <h3>Un été plein de soleil et d'amour ☀️</h3>
+  <p style="font-size:1rem;opacity:.8;margin-top:.4rem">Avec tout notre amour — Pascal &amp; Gwladys 💛</p>
+  <p>Juillet · Août 2026 · Sud de la France → Grèce</p>
+  <a href="./indexsum26-transport.html" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;text-decoration:none;padding:.65rem 1.5rem;border-radius:50px;font-weight:800;font-size:.88rem;transition:all .3s;backdrop-filter:blur(8px)">✈️ Voir tous les transports</a>
+  <p style="margin-top:1.5rem;font-size:.75rem">Sète · Carcassonne · Bordeaux · Athènes</p>
+</footer>
+
+<script>
+// ── Progress bar ──
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('progress-bar').style.width=(s/h*100)+'%';
+});
+
+// ── Scroll to section ──
+function goTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+// ── Nav dots active state ──
+const SECS=['hero','qui-vient','programme','anniversaire','athenes'];
+const secObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-dot').forEach(d=>d.classList.remove('active'));
+      const d=document.querySelector(`.nav-dot[data-s="${e.target.id}"]`);
+      if(d)d.classList.add('active');
+    }
+  });
+},{threshold:.35});
+SECS.forEach(id=>{const el=document.getElementById(id);if(el)secObs.observe(el)});
+
+// ── Fade-in on scroll ──
+const fadeObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+document.querySelectorAll('.fade-in,.fade-left').forEach(el=>fadeObs.observe(el));
+
+// ── Stats counter — démarre dès la première interaction ou après 800ms ──
+function counter(el,target,ms=1400){
+  if(el.dataset.done)return;el.dataset.done=1;
+  let v=0;const step=Math.max(1,Math.ceil(target/(ms/40)));
+  const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=v;if(v>=target)clearInterval(t)},40);
+}
+function startCounters(){
+  document.querySelectorAll('.stat-num[data-target]').forEach(el=>counter(el,+el.dataset.target));
+}
+// Démarre au premier geste (touch, souris, scroll) ou au bout de 800ms
+const triggerOnce=(()=>{let fired=false;return()=>{if(fired)return;fired=true;startCounters();}})();
+['touchstart','mousemove','scroll'].forEach(ev=>window.addEventListener(ev,triggerOnce,{once:true,passive:true}));
+setTimeout(triggerOnce,800);
+
+// ── Timeline accordion ──
+function toggleTl(head){
+  const body=head.nextElementSibling,wasOpen=head.classList.contains('open');
+  document.querySelectorAll('.tl-head.open').forEach(h=>{h.classList.remove('open');h.nextElementSibling.classList.remove('open')});
+  if(!wasOpen){head.classList.add('open');body.classList.add('open')}
+}
+
+// ── Confetti ──
+function launchConfetti(){
+  const c=document.getElementById('confetti-container');
+  const cols=['#FF6B35','#FFD166','#004E89','#6B9E78','#FF4081','#FFEB3B','#00BCD4','#E91E63','#9C27B0'];
+  for(let i=0;i<140;i++){
+    const p=document.createElement('div');
+    const size=Math.random()*10+5;
+    const dur=Math.random()*2.5+2;
+    const delay=Math.random()*0.8;
+    const rot=Math.random()*720*(Math.random()>.5?1:-1);
+    const drift=(Math.random()-0.5)*200;
+    p.style.cssText=`position:fixed;top:-20px;left:${Math.random()*100}vw;width:${size}px;height:${size}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'3px'};pointer-events:none;animation:cf ${dur}s ease-in ${delay}s forwards`;
+    c.appendChild(p);
+    setTimeout(()=>p.remove(),(dur+delay)*1000+200);
+  }
+}
+// Inject confetti keyframes once
+(()=>{
+  const s=document.createElement('style');
+  s.textContent='@keyframes cf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg) translateX(var(--dx,0px));opacity:0}}';
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

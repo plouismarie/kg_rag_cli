@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transports – Été 2026 ✈️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:#f0f4f8;color:#1A1A2E;overflow-x:hidden}
+:root{
+  --coral:#FF6B35;--sky:#4FC3F7;--navy:#0D1B3E;--yellow:#FFD166;
+  --cream:#FFF8F0;--dark:#1A1A2E;--mid:#1a3a6e;--card:#fff;
+}
+
+/* ── Progress bar ── */
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--sky),var(--coral));width:0%;z-index:1000;border-radius:0 2px 2px 0;transition:width .1s linear}
+
+/* ── Back link ── */
+#back-link{position:fixed;top:14px;left:16px;z-index:999;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:#fff;text-decoration:none;font-weight:800;font-size:.82rem;padding:.45rem 1rem;border-radius:50px;transition:all .3s;letter-spacing:.5px}
+#back-link:hover{background:rgba(255,255,255,.3)}
+#back-link.dark{background:rgba(255,107,53,.1);border-color:var(--coral);color:var(--coral)}
+#back-link.dark:hover{background:rgba(255,107,53,.15)}
+
+/* ── Scroll animations ── */
+.fade-in{opacity:0;transform:translateY(35px);transition:opacity .65s ease,transform .65s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-left{opacity:0;transform:translateX(-35px);transition:opacity .6s ease,transform .6s ease}
+.fade-left.visible{opacity:1;transform:translateX(0)}
+
+/* ══════════ HERO ══════════ */
+#hero{min-height:100vh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,#050d20 0%,#0d1b3e 40%,#1a3a6e 70%,#2d6a8f 100%)}
+.hero-bg{position:absolute;inset:0;background:url('./images/tr-hero.jpg') center/cover no-repeat;opacity:.35}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,13,32,.2) 0%,rgba(5,13,32,.55) 100%)}
+
+/* Stars */
+.stars{position:absolute;inset:0;overflow:hidden;z-index:1}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+
+/* Animated plane */
+.hero-plane{position:absolute;font-size:2.5rem;z-index:3;top:45%;left:0;animation:glidePlane 14s linear infinite}
+@keyframes glidePlane{
+  0%  {transform:translate(-100px, 90px) rotate(-15deg);opacity:0}
+  6%  {opacity:.9}
+  94% {opacity:.9}
+  100%{transform:translate(calc(100vw + 100px), -65px) rotate(-10deg);opacity:0}
+}
+
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;padding:2rem 1.5rem}
+.hero-eyebrow{font-size:.9rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;opacity:.8;margin-bottom:.75rem;color:var(--sky)}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(2.8rem,9vw,6rem);line-height:1.05;text-shadow:2px 4px 20px rgba(0,0,0,.5);margin-bottom:.75rem}
+.hero-tagline{font-size:clamp(.95rem,2.5vw,1.2rem);opacity:.9;max-width:500px;margin:0 auto 2.5rem;line-height:1.6;font-style:italic}
+.stats-row{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.stat-item{background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:.9rem 1.4rem;text-align:center}
+.stat-num{font-family:'Fredoka One',cursive;font-size:2.4rem;display:block;line-height:1;color:var(--yellow)}
+.stat-lbl{font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.8}
+.scroll-cta{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:#fff;opacity:.7;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;animation:bounce 2s ease-in-out infinite;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.scroll-cta span{font-size:1.6rem}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ══════════ ROUTE MAP ══════════ */
+#route-map{background:linear-gradient(135deg,#e8f4fd,#f0f7ff);padding:4rem 2rem}
+.route-map-inner{max-width:900px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-header .sec-emoji{font-size:2.2rem;display:block;margin-bottom:.4rem}
+.section-header h2{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--dark);margin-bottom:.4rem}
+.section-header p{font-size:1rem;color:#777;max-width:480px;margin:0 auto}
+
+/* Route diagram — horizontal scrollable on mobile */
+.route-diagram-wrap{overflow-x:auto;padding-bottom:.5rem}
+.route-diagram{display:flex;align-items:center;gap:0;min-width:680px;padding:2rem 1rem;background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.route-node{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex-shrink:0}
+.rn-dot{width:36px;height:36px;border-radius:50%;background:var(--navy);border:3px solid var(--sky);display:flex;align-items:center;justify-content:center;font-size:.85rem;animation:pulse-dot 3s ease-in-out infinite;position:relative;z-index:1}
+.rn-dot.warn{border-color:var(--coral);background:#fff3cd;animation:pulse-warn 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(79,195,247,.4)}50%{box-shadow:0 0 0 8px rgba(79,195,247,0)}}
+@keyframes pulse-warn{0%,100%{box-shadow:0 0 0 0 rgba(255,107,53,.4)}50%{box-shadow:0 0 0 8px rgba(255,107,53,0)}}
+.rn-code{font-family:'Fredoka One',cursive;font-size:.85rem;color:var(--navy);line-height:1}
+.rn-date{font-size:.65rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px}
+.route-leg{flex:1;display:flex;flex-direction:column;align-items:center;gap:.2rem;min-width:50px}
+.leg-line{width:100%;height:2px;position:relative;overflow:hidden;border-radius:1px}
+.leg-line::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,var(--sky) 0,var(--sky) 6px,transparent 6px,transparent 12px);animation:dash-move 1.5s linear infinite}
+.leg-line.warn::before{background:repeating-linear-gradient(90deg,var(--coral) 0,var(--coral) 6px,transparent 6px,transparent 12px)}
+@keyframes dash-move{0%{transform:translateX(0)}100%{transform:translateX(-12px)}}
+.leg-icon{font-size:.85rem;opacity:.7}
+
+/* ══════════ TIMELINE SEGMENTS ══════════ */
+#segments{padding:5rem 2rem;background:#f8f9fa}
+.seg-timeline{max-width:800px;margin:0 auto;position:relative}
+.seg-timeline::before{content:'';position:absolute;left:40px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--sky),var(--coral),var(--yellow));border-radius:2px}
+
+.seg-item{position:relative;padding-left:88px;margin-bottom:1.25rem}
+.seg-dot{position:absolute;left:27px;top:20px;width:28px;height:28px;border-radius:50%;background:var(--navy);border:3px solid var(--sky);box-shadow:0 0 0 3px rgba(79,195,247,.25);z-index:1;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:transform .3s}
+.seg-item:hover .seg-dot{transform:scale(1.15)}
+.seg-dot.ok{border-color:#4caf50;background:#e8f5e9;box-shadow:0 0 0 3px rgba(76,175,80,.2)}
+.seg-dot.warn{border-color:var(--coral);background:#fff3cd;box-shadow:0 0 0 3px rgba(255,107,53,.2)}
+.seg-dot.car{border-color:var(--yellow);background:#fffde7;box-shadow:0 0 0 3px rgba(255,209,102,.25)}
+
+.seg-head{background:#fff;border-radius:16px;padding:1.1rem 1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;border:2px solid transparent}
+.seg-head:hover{border-color:rgba(79,195,247,.4);box-shadow:0 4px 20px rgba(79,195,247,.15)}
+.seg-head.open{border-color:var(--sky);border-radius:16px 16px 0 0;background:linear-gradient(135deg,#fff,#f0f8ff)}
+.seg-head-left{display:flex;align-items:center;gap:.9rem}
+.seg-ico{font-size:1.9rem;flex-shrink:0}
+.seg-date{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--sky);margin-bottom:.15rem}
+.seg-date.warn-date{color:var(--coral)}
+.seg-title{font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--dark);line-height:1.2;display:flex;align-items:center;gap:.5rem}
+.seg-sub{font-size:.8rem;color:#aaa;margin-top:.1rem}
+.seg-toggle{font-size:1.4rem;font-weight:800;color:var(--sky);transition:transform .35s;line-height:1;flex-shrink:0}
+.seg-head.open .seg-toggle{transform:rotate(45deg)}
+
+/* Badge */
+.badge-todo{display:inline-flex;align-items:center;gap:.3rem;background:#fff3cd;color:#856404;border:1.5px solid #ffc107;border-radius:50px;font-size:.72rem;font-weight:800;padding:.2rem .7rem;animation:blink-badge 2.5s ease-in-out infinite}
+@keyframes blink-badge{0%,100%{opacity:1}50%{opacity:.55}}
+.badge-ok{display:inline-flex;align-items:center;gap:.25rem;background:#e8f5e9;color:#2e7d32;border-radius:50px;font-size:.72rem;font-weight:800;padding:.2rem .7rem;border:1.5px solid #4caf50}
+
+.seg-body{background:#fff;border:2px solid var(--sky);border-top:none;border-radius:0 0 16px 16px;max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s}
+.seg-body.open{max-height:700px;padding:1.4rem}
+.seg-body.warn-border{border-color:var(--coral)}
+.seg-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.info-blk{background:#f8fafc;border-radius:12px;padding:.9rem 1rem}
+.info-blk h4{font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--sky);font-weight:800;margin-bottom:.4rem}
+.info-blk h4.warn-h{color:var(--coral)}
+.info-blk p{font-size:.88rem;line-height:1.6;color:var(--dark);font-weight:600}
+.info-blk a{color:var(--sky);font-weight:700;text-decoration:none}
+.info-blk a:hover{text-decoration:underline}
+.full{grid-column:1/-1}
+.note-banner{background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-radius:10px;padding:.7rem 1rem;font-size:.83rem;font-weight:700;color:#0d47a1;display:flex;align-items:flex-start;gap:.5rem;grid-column:1/-1}
+.warn-banner{background:linear-gradient(135deg,#fff9e6,#fff3cd);border-radius:10px;padding:.7rem 1rem;font-size:.83rem;font-weight:700;color:#856404;display:flex;align-items:flex-start;gap:.5rem;grid-column:1/-1}
+
+/* Route display inside card */
+.route-display{display:flex;align-items:center;justify-content:center;gap:1rem;padding:1rem;background:linear-gradient(135deg,var(--navy),var(--mid));border-radius:12px;color:#fff;grid-column:1/-1;margin-bottom:.2rem}
+.r-city .r-code{font-family:'Fredoka One',cursive;font-size:1.8rem;line-height:1}
+.r-city .r-name{font-size:.72rem;opacity:.75;text-align:center}
+.r-city .r-time{font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--yellow)}
+.r-arrow{font-size:1.6rem;animation:fly 2s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+/* Segment image */
+.seg-img{width:100%;height:160px;object-fit:cover;border-radius:10px;grid-column:1/-1;margin-bottom:.2rem}
+
+/* Passagers table */
+.pax-table{width:100%;border-collapse:collapse;font-size:.8rem;grid-column:1/-1}
+.pax-table th{background:var(--navy);color:#fff;padding:.4rem .7rem;text-align:left;font-size:.7rem;letter-spacing:.5px}
+.pax-table th:first-child{border-radius:6px 0 0 0}
+.pax-table th:last-child{border-radius:0 6px 0 0}
+.pax-table td{padding:.4rem .7rem;border-bottom:1px solid #f0f0f0;color:var(--dark);font-weight:600}
+.pax-table tr:last-child td{border-bottom:none}
+.pax-table tr:nth-child(even){background:#f8fafc}
+
+/* Compagnie logo text */
+.airline-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:#fff;border-radius:50px;padding:.35rem 1rem;font-weight:800;font-size:.82rem;margin-bottom:.3rem}
+
+/* ══════════ FOOTER ══════════ */
+footer{background:var(--navy);color:#fff;text-align:center;padding:3rem 2rem}
+footer h3{font-family:'Fredoka One',cursive;font-size:1.7rem;background:linear-gradient(90deg,var(--sky),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.75rem}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--coral);color:#fff;text-decoration:none;padding:.75rem 1.8rem;border-radius:50px;font-weight:800;font-size:.95rem;transition:all .3s;margin-top:.5rem}
+.back-btn:hover{background:#e5551e;transform:translateY(-2px);box-shadow:0 6px 18px rgba(255,107,53,.4)}
+footer p{opacity:.5;font-size:.85rem;margin-top:1.2rem}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:768px){
+  .seg-timeline::before{left:18px}
+  .seg-item{padding-left:52px}
+  .seg-dot{left:6px;top:18px;width:24px;height:24px;font-size:.75rem}
+  .seg-grid{grid-template-columns:1fr}
+  .stats-row{gap:1rem}
+  .route-display{flex-wrap:wrap;gap:.6rem}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<a id="back-link" href="./index.html">← Programme</a>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Flying plane -->
+  <div class="hero-plane">✈️</div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">✈️ Été 2026 · Tous les transports</p>
+    <h1 class="hero-title">La Grande<br>Traversée</h1>
+    <p class="hero-tagline">De San Francisco au soleil de la Méditerranée,<br>en passant par Athènes et la Crète… Un été sur tous les continents !</p>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num" data-target="5">0</span>
+        <span class="stat-lbl">Vols</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="23000">0</span>
+        <span class="stat-lbl">Km parcourus</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="3">0</span>
+        <span class="stat-lbl">Compagnies</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="34">0</span>
+        <span class="stat-lbl">Jours de voyage</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cta" onclick="goTo('route-map')">
+    Voir le trajet<span>↓</span>
+  </div>
+</section>
+
+<!-- ══════════════════════ ROUTE MAP ══════════════════════ -->
+<section id="route-map">
+  <div class="route-map-inner">
+    <div class="section-header fade-in">
+      <span class="sec-emoji">🗺️</span>
+      <h2>La Route Complète</h2>
+      <p>7 juillet – 9 août 2026</p>
+    </div>
+
+    <div class="route-diagram-wrap fade-in">
+      <div class="route-diagram">
+
+        <div class="route-node">
+          <div class="rn-dot ok">🇺🇸</div>
+          <div class="rn-code">SFO</div>
+          <div class="rn-date">7 juil</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line"></div><div class="leg-icon">✈️</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot ok">🇫🇷</div>
+          <div class="rn-code">ORY</div>
+          <div class="rn-date">8 juil</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line warn"></div><div class="leg-icon">🚂</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot warn">⚠️</div>
+          <div class="rn-code">Sète</div>
+          <div class="rn-date">12 juil</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line" style="--c:var(--yellow)"></div><div class="leg-icon">🚗</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot car">🏰</div>
+          <div class="rn-code">Carc.</div>
+          <div class="rn-date">22 juil</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line" style="--c:var(--yellow)"></div><div class="leg-icon">🚗</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot car">🍷</div>
+          <div class="rn-code">BOD</div>
+          <div class="rn-date">23 juil</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line"></div><div class="leg-icon">✈️</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot ok">🏛️</div>
+          <div class="rn-code">ATH</div>
+          <div class="rn-date">27 juil</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line"></div><div class="leg-icon">✈️</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot ok">🏝️</div>
+          <div class="rn-code">HER</div>
+          <div class="rn-date">1er août</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line"></div><div class="leg-icon">✈️</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot ok">🗼</div>
+          <div class="rn-code" style="font-size:.7rem">CDG→ORY</div>
+          <div class="rn-date">8→9 août</div>
+        </div>
+
+        <div class="route-leg"><div class="leg-line"></div><div class="leg-icon">✈️</div></div>
+
+        <div class="route-node">
+          <div class="rn-dot ok">🇺🇸</div>
+          <div class="rn-code">SFO</div>
+          <div class="rn-date">9 août</div>
+        </div>
+
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:.8rem;color:#aaa;margin-top:1rem">
+      ⚠️ = billet non encore acheté &nbsp;|&nbsp; Faites défiler pour voir chaque segment
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════ SEGMENTS ══════════════════════ -->
+<section id="segments">
+  <div class="section-header fade-in" style="margin-bottom:3rem">
+    <span class="sec-emoji">🎫</span>
+    <h2>Tous les Segments</h2>
+    <p>Clique sur chaque trajet pour les détails complets</p>
+  </div>
+
+  <div class="seg-timeline">
+
+    <!-- ① SFO → CDG · French Bee BF711 -->
+    <div class="seg-item fade-left" style="transition-delay:.05s">
+      <div class="seg-dot ok">✈️</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">✈️</div>
+          <div>
+            <div class="seg-date">7 Juillet 2026 · 20h30</div>
+            <div class="seg-title">San Francisco → Paris <span class="badge-ok">✓ Confirmé</span></div>
+            <div class="seg-sub">French Bee · BF711 · 10h50 de vol</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-grid">
+          <img src="./images/tr-frenchbee.jpg" alt="Vol transatlantique" class="seg-img" onerror="this.style.display='none'">
+          <div class="route-display">
+            <div class="r-city"><div class="r-code">SFO</div><div class="r-name">San Francisco Intl<br>Terminal I</div><div class="r-time">20h30</div></div>
+            <div class="r-arrow">✈️</div>
+            <div class="r-city"><div class="r-code">ORY</div><div class="r-name">Paris Orly<br>Terminal 4</div><div class="r-time">16h20 +1j</div></div>
+          </div>
+          <div class="info-blk">
+            <h4>✈️ Vol</h4>
+            <p><span class="airline-badge">🐝 French Bee</span><br>BF711 · Classe ESMART<br>Durée : 10h50<br>Siège : 19C · 1 bagage</p>
+          </div>
+          <div class="info-blk">
+            <h4>📅 Horaires</h4>
+            <p>Départ : 7 juil · 20h30<br>Arrivée : 8 juil · 16h20<br>Dernier check-in : 19h00</p>
+          </div>
+          <div class="note-banner">ℹ️ <span>Départ de San Francisco, arrivée à Paris Orly le lendemain matin</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Paris → Sète · Train -->
+    <div class="seg-item fade-left" style="transition-delay:.1s">
+      <div class="seg-dot warn">🚂</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">🚂</div>
+          <div>
+            <div class="seg-date warn-date">12 Juillet 2026</div>
+            <div class="seg-title">Paris → Sète <span class="badge-todo">⚠️ À acheter</span></div>
+            <div class="seg-sub">Train direct · TGV / Intercités</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body warn-border">
+        <div class="seg-grid">
+          <img src="./images/tr-train.jpg" alt="Train vers Sète" class="seg-img" onerror="this.style.display='none'">
+          <div class="warn-banner">⚠️ <span>Le billet de train Paris → Sète n'a pas encore été acheté. À réserver dès que possible sur <a href="https://www.sncf-connect.com" target="_blank">sncf-connect.com</a></span></div>
+          <div class="info-blk">
+            <h4 class="warn-h">🚉 Trajet</h4>
+            <p>Paris (Gare de Lyon)<br>→ Sète<br>Train direct</p>
+          </div>
+          <div class="info-blk">
+            <h4 class="warn-h">👥 Passagers</h4>
+            <p>Sonia, Audrey<br>+ Gwladys, Orlann<br>Warren, Rubenn</p>
+          </div>
+          <div class="info-blk full">
+            <h4 class="warn-h">ℹ️ Note</h4>
+            <p>Pascal rejoint directement à Sète le 19 juillet après son séminaire près de Perpignan. Il n'est pas sur ce trajet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Sète → Carcassonne · Voiture -->
+    <div class="seg-item fade-left" style="transition-delay:.15s">
+      <div class="seg-dot car">🚗</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">🚗</div>
+          <div>
+            <div class="seg-date">22 Juillet 2026</div>
+            <div class="seg-title">Sète → Carcassonne</div>
+            <div class="seg-sub">Voiture de location · ~100 km · ~1h15</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body" style="border-color:var(--yellow)">
+        <div class="seg-grid">
+          <img src="./images/tr-car.jpg" alt="Route sud de France" class="seg-img" onerror="this.style.display='none'">
+          <div class="info-blk">
+            <h4>🚗 Trajet</h4>
+            <p>Sète → Carcassonne<br>Voiture de location<br>~100 km · ~1h15</p>
+          </div>
+          <div class="info-blk">
+            <h4>🏰 Arrivée</h4>
+            <p>28 Rue Longue<br>11000 Carcassonne<br>Check-in dès 16h00</p>
+          </div>
+          <div class="note-banner">🧳 <span>Check-out de Sète à 11h00 · Départ vers Carcassonne dans la matinée</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Carcassonne → Bordeaux · Voiture -->
+    <div class="seg-item fade-left" style="transition-delay:.2s">
+      <div class="seg-dot car">🚗</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">🚗</div>
+          <div>
+            <div class="seg-date">23 Juillet 2026</div>
+            <div class="seg-title">Carcassonne → Bordeaux</div>
+            <div class="seg-sub">Voiture de location · ~250 km · ~2h30</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body" style="border-color:var(--yellow)">
+        <div class="seg-grid">
+          <div class="info-blk">
+            <h4>🚗 Trajet</h4>
+            <p>Carcassonne → Bordeaux<br>Voiture de location<br>~250 km · ~2h30</p>
+          </div>
+          <div class="info-blk">
+            <h4>🍷 Arrivée</h4>
+            <p>33 Rue Boris Vian<br>Bordeaux<br>Check-in dès 16h00</p>
+          </div>
+          <div class="note-banner">🧳 <span>Check-out de Carcassonne à 10h00 · Départ vers Bordeaux dans la matinée</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ BOD → ATH · Aegean A3697 -->
+    <div class="seg-item fade-left" style="transition-delay:.25s">
+      <div class="seg-dot ok">✈️</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">✈️</div>
+          <div>
+            <div class="seg-date">27 Juillet 2026 · 17h30</div>
+            <div class="seg-title">Bordeaux → Athènes <span class="badge-ok">✓ 7I2OGK</span></div>
+            <div class="seg-sub">Aegean Airlines · A3697 · 3h05 · Direct</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-grid">
+          <img src="./images/tr-aegean.jpg" alt="Vol Bordeaux Athènes" class="seg-img" onerror="this.style.display='none'">
+          <div class="route-display">
+            <div class="r-city"><div class="r-code">BOD</div><div class="r-name">Bordeaux Mérignac</div><div class="r-time">17h30</div></div>
+            <div class="r-arrow">✈️</div>
+            <div class="r-city"><div class="r-code">ATH</div><div class="r-name">Athènes El. Venizelos</div><div class="r-time">21h35</div></div>
+          </div>
+          <div class="info-blk">
+            <h4>✈️ Vol</h4>
+            <p><span class="airline-badge">🔵 Aegean Airlines</span><br>A3697 · Airbus A320neo<br>Durée : 3h05 · Direct<br>Classe Economy (Family)</p>
+          </div>
+          <div class="info-blk">
+            <h4>🎫 Réservation</h4>
+            <p>Référence : <strong>7I2OGK</strong><br>Classe : Q</p>
+          </div>
+          <div class="note-banner">👥 <span>Pascal, Gwladys, Orlann, Warren et Rubenn — 5 passagers</span></div>
+          <table class="pax-table">
+            <thead><tr><th>Passager</th><th>Billet</th></tr></thead>
+            <tbody>
+              <tr><td>Pascal Louismarie</td><td>390-2482476416</td></tr>
+              <tr><td>Gwladys Louis-Marie</td><td>390-2482476414</td></tr>
+              <tr><td>Orlann Louis-Marie</td><td>390-2482476415</td></tr>
+              <tr><td>Warren Louis-Marie</td><td>390-2482476418</td></tr>
+              <tr><td>Rubenn Louis-Marie</td><td>390-2482476417</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ ATH → HER · Aegean A3308 -->
+    <div class="seg-item fade-left" style="transition-delay:.3s">
+      <div class="seg-dot ok">✈️</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">✈️</div>
+          <div>
+            <div class="seg-date">1er Août 2026 · 11h20</div>
+            <div class="seg-title">Athènes → Crète <span class="badge-ok">✓ 72D9VH</span></div>
+            <div class="seg-sub">Aegean Airlines · A3308 · 55 min</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-grid">
+          <div class="route-display">
+            <div class="r-city"><div class="r-code">ATH</div><div class="r-name">Athènes</div><div class="r-time">11h20</div></div>
+            <div class="r-arrow">✈️</div>
+            <div class="r-city"><div class="r-code">HER</div><div class="r-name">Héraklion · Crète</div><div class="r-time">12h15</div></div>
+          </div>
+          <div class="info-blk">
+            <h4>✈️ Vol</h4>
+            <p><span class="airline-badge">🔵 Aegean Airlines</span><br>A3308 · Durée : 55 min<br>Classe Economy</p>
+          </div>
+          <div class="info-blk">
+            <h4>🎫 Réservation</h4>
+            <p>Référence : <strong>72D9VH</strong><br>Samedi 1er août 2026<br>600 miles / passager</p>
+          </div>
+          <table class="pax-table">
+            <thead><tr><th>Passager</th><th>Billet</th></tr></thead>
+            <tbody>
+              <tr><td>Pascal Louismarie</td><td>390-2482175982</td></tr>
+              <tr><td>Gwladys Louis-Marie</td><td>390-2482175980</td></tr>
+              <tr><td>Orlann Louis-Marie</td><td>390-2482175981</td></tr>
+              <tr><td>Warren Louis-Marie</td><td>390-2482175984</td></tr>
+              <tr><td>Rubenn Louis-Marie</td><td>390-2482175983</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑦ HER → ATH → CDG · Sky Express -->
+    <div class="seg-item fade-left" style="transition-delay:.35s">
+      <div class="seg-dot ok">✈️</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">✈️</div>
+          <div>
+            <div class="seg-date">8 Août 2026 · 08h40</div>
+            <div class="seg-title">Crète → Athènes → Paris <span class="badge-ok">✓ 3110022430</span></div>
+            <div class="seg-sub">Sky Express · GQ211 + GQ900 · Correspondance ATH</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-grid">
+          <div class="route-display">
+            <div class="r-city"><div class="r-code">HER</div><div class="r-name">Héraklion</div><div class="r-time">08h40</div></div>
+            <div class="r-arrow">✈️</div>
+            <div class="r-city"><div class="r-code">ATH</div><div class="r-name">Athènes</div><div class="r-time">09h30</div></div>
+            <div class="r-arrow">✈️</div>
+            <div class="r-city"><div class="r-code">CDG</div><div class="r-name">Paris CDG</div><div class="r-time">13h15</div></div>
+          </div>
+          <div class="info-blk">
+            <h4>✈️ Leg 1</h4>
+            <p><span class="airline-badge">🟡 Sky Express</span><br>GQ211 · HER → ATH<br>08h40 → 09h30 · 50 min<br>Économie</p>
+          </div>
+          <div class="info-blk">
+            <h4>✈️ Leg 2</h4>
+            <p><span class="airline-badge">🟡 Sky Express</span><br>GQ900 · ATH → CDG<br>10h40 → 13h15 · 3h35<br>Économie</p>
+          </div>
+          <div class="note-banner">⏱️ <span>Correspondance à Athènes : <strong>1h10</strong> entre les deux vols</span></div>
+          <div class="warn-banner">🚌 <span><strong>Transfert inter-aéroports à prévoir</strong> : Sky Express arrive à CDG (Charles de Gaulle), mais le vol French Bee du lendemain repart d'<strong>ORY (Orly)</strong> — environ 1h de transfert (RER B + Orlyval ou taxi)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑧ CDG → SFO · French Bee BF710 -->
+    <div class="seg-item fade-left" style="transition-delay:.4s">
+      <div class="seg-dot ok">✈️</div>
+      <div class="seg-head" onclick="toggleSeg(this)">
+        <div class="seg-head-left">
+          <div class="seg-ico">✈️</div>
+          <div>
+            <div class="seg-date">9 Août 2026 · 18h30</div>
+            <div class="seg-title">Paris → San Francisco <span class="badge-ok">✓ Confirmé</span></div>
+            <div class="seg-sub">French Bee · BF710 · 11h20 de vol</div>
+          </div>
+        </div>
+        <div class="seg-toggle">+</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-grid">
+          <div class="route-display">
+            <div class="r-city"><div class="r-code">ORY</div><div class="r-name">Paris Orly<br>Terminal 4</div><div class="r-time">18h30</div></div>
+            <div class="r-arrow">✈️</div>
+            <div class="r-city"><div class="r-code">SFO</div><div class="r-name">San Francisco Intl<br>Terminal I</div><div class="r-time">20h50</div></div>
+          </div>
+          <div class="info-blk">
+            <h4>✈️ Vol</h4>
+            <p><span class="airline-badge">🐝 French Bee</span><br>BF710 · Classe ESMART<br>Durée : 11h20<br>Siège : 18G · 1 bagage</p>
+          </div>
+          <div class="info-blk">
+            <h4>📅 Horaires</h4>
+            <p>Départ : 9 août · 18h30<br>Arrivée : 9 août · 20h50<br>Dernier check-in : 17h00</p>
+          </div>
+          <div class="note-banner">🏠 <span>Retour à San Francisco le même jour grâce au décalage horaire !</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /seg-timeline -->
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <h3>Bon voyage à tous ! ✈️ ☀️</h3>
+  <a href="./index.html" class="back-btn">← Retour au programme des vacances</a>
+  <p>Été 2026 · San Francisco → Méditerranée → Athènes → Crète → Paris → San Francisco</p>
+</footer>
+
+<script>
+// ── Progress bar ──
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('progress-bar').style.width=(s/h*100)+'%';
+});
+
+// ── Back link color switch (dark once past hero) ──
+const backLink=document.getElementById('back-link');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>window.innerHeight*.7)backLink.classList.add('dark');
+  else backLink.classList.remove('dark');
+},{passive:true});
+
+// ── Scroll to section ──
+function goTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+// ── Fade-in animations ──
+const fadeObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.fade-in,.fade-left').forEach(el=>fadeObs.observe(el));
+
+// ── Stats counter — mobile-friendly ──
+function counter(el,target,ms=1400){
+  if(el.dataset.done)return;el.dataset.done=1;
+  const fmt=n=>target>=1000?n.toLocaleString('fr-FR'):n;
+  let v=0;const step=Math.max(1,Math.ceil(target/(ms/40)));
+  const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=fmt(v);if(v>=target)clearInterval(t)},40);
+}
+function startCounters(){document.querySelectorAll('.stat-num[data-target]').forEach(el=>counter(el,+el.dataset.target))}
+const triggerOnce=(()=>{let fired=false;return()=>{if(fired)return;fired=true;startCounters()}})();
+['touchstart','mousemove','scroll'].forEach(ev=>window.addEventListener(ev,triggerOnce,{once:true,passive:true}));
+setTimeout(triggerOnce,800);
+
+// ── Segment accordion ──
+function toggleSeg(head){
+  const body=head.nextElementSibling,wasOpen=head.classList.contains('open');
+  document.querySelectorAll('.seg-head.open').forEach(h=>{h.classList.remove('open');h.nextElementSibling.classList.remove('open')});
+  if(!wasOpen){head.classList.add('open');body.classList.add('open')}
+}
+
+// ── Generate stars ──
+const starsEl=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  const size=Math.random()*2.5+1;
+  s.className='star';
+  s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+2}s;--delay:-${Math.random()*5}s`;
+  starsEl.appendChild(s);
+}
+</script>
+</body>
+</html>

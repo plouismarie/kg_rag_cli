@@ -1,0 +1,106 @@
+{
+  "test_questions": [
+    {
+      "id": 1,
+      "difficulty": "very_easy",
+      "category": "functionality_check",
+      "question": "What is the name of the automated house?",
+      "expected_answer": "Happylife Home",
+      "notes": "Simple factual recall to confirm query functionality"
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "How much did the Happylife Home cost?",
+      "expected_answer": "Thirty thousand dollars",
+      "notes": "Direct factual information from the text"
+    },
+    {
+      "id": 3,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "What are the names of the Hadley children?",
+      "expected_answer": "Wendy and Peter",
+      "notes": "Simple character identification"
+    },
+    {
+      "id": 4,
+      "difficulty": "easy",
+      "category": "direct_recall",
+      "question": "Who is David McClean?",
+      "expected_answer": "A psychologist",
+      "notes": "Character role identification"
+    },
+    {
+      "id": 5,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "What items belonging to the parents were found in the nursery, and what was their condition?",
+      "expected_answer": "George's old wallet was found chewed with drops of saliva and blood smears on it. Later, Lydia's bloody scarf was also found in the nursery.",
+      "notes": "Requires connecting multiple pieces of evidence across different pages"
+    },
+    {
+      "id": 6,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "How does the nursery technology work?",
+      "expected_answer": "The nursery uses crystal walls, dimensional and super-reactionary color film, mental tape film behind glass screens, odorophonics and sonics. It catches the telepathic emanations of the children's minds and creates life to fill their every desire.",
+      "notes": "Requires synthesizing technical details from multiple passages"
+    },
+    {
+      "id": 7,
+      "difficulty": "medium",
+      "category": "connecting_information",
+      "question": "What examples does the text give of other scenes the nursery had previously displayed?",
+      "expected_answer": "Wonderland, Alice, the caterpillar, Aladdin and his Magical Lamp, the Wizard of Oz, Dr. Doolittle, the cow jumping over the moon, Pegasus flying, fountains of red fireworks, and angel voices singing. The children also changed it to show Rima in a green forest.",
+      "notes": "Requires recalling multiple examples mentioned in the narrative"
+    },
+    {
+      "id": 8,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "According to David McClean, what caused the children's psychological problems, and what was his recommended solution?",
+      "expected_answer": "The parents had spoiled the children and let the room and house replace them in their children's affections. The nursery became their mother and father. When the parents tried to assert control by denying trips and threatening to close the nursery, they went from Santa Claus to Scrooge, creating hatred. McClean recommended tearing down the nursery, bringing the children for treatment every day for a year, and the parents turning everything off and starting a new life based on self-sufficiency rather than automated comfort.",
+      "notes": "Requires synthesizing McClean's diagnosis across multiple statements and understanding cause-effect relationships"
+    },
+    {
+      "id": 9,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "What warning signs did the parents notice about the nursery before calling the psychologist, and why did they initially ignore them?",
+      "expected_answer": "George had heard lions roaring and smelled their strong odor for about a month, even reaching his study door. The nursery had been stuck on the African veldt pattern instead of changing themes. Lydia noticed it was 'too real' and heard screams. George initially paid no attention because he was busy. They also rationalized it as the children exercising their minds with gymnastic fantasies.",
+      "notes": "Requires connecting observations from different time points and understanding character psychology"
+    },
+    {
+      "id": 10,
+      "difficulty": "hard",
+      "category": "synthesis_causality",
+      "question": "How does Lydia's emotional state and concerns about the house differ from George's, and what does this reveal about the impact of automation on the family?",
+      "expected_answer": "Lydia feels she doesn't belong and that the house has replaced her as wife, mother, and nursemaid. She can't compete with the automated systems and wants to do basic tasks like frying eggs and folding socks. She observes that George has also become 'unnecessary' - smoking more each morning, drinking more each afternoon, needing more sedatives at night. This shows the house has stripped both parents of purpose and identity, creating existential anxiety and dependency.",
+      "notes": "Requires analyzing character dialogue, emotional subtext, and thematic implications across multiple pages"
+    },
+    {
+      "id": 11,
+      "difficulty": "unanswerable",
+      "category": "not_in_data",
+      "question": "What happened to Wendy and Peter after David McClean discovered what they had done?",
+      "expected_answer": "This information is not provided in the text.",
+      "notes": "Tests how the RAG system handles questions about events after the story ends"
+    }
+  ],
+  "metadata": {
+    "source_directory": "/Users/plouismarie/Documents/apple2/s3userskubev2/amaai/kg_rag_cli/Input/MultiPage/TheVeldt",
+    "total_questions": 11,
+    "difficulty_distribution": {
+      "very_easy": 1,
+      "easy": 3,
+      "medium": 3,
+      "hard": 3,
+      "unanswerable": 1
+    },
+    "purpose": "Testing RAG systems: kg_rag_cli, vt_rag_cli, ag_rag_cli, rlm_rag_cli",
+    "content_theme": "Ray Bradbury's 'The Veldt' - Science fiction story about technology, parenting, and consequences",
+    "story_summary": "A cautionary tale about a family whose automated home and virtual reality nursery lead to the children's complete dependence on technology and ultimately their parents' demise"
+  }
+}
